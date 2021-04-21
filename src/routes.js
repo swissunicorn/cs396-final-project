@@ -80,7 +80,56 @@ router.route("/doctors/favorites")
     })
     .post((req, res) => {
         console.log(`POST /doctors/favorites`);
-        res.status(501).send();
+        FavoriteDoctor.create(req.params.id)
+            .save()
+            .then(favdoc => {
+                res.status(200).send(favdoc)
+            })
+            .catch(err => {
+                message: "some error"
+            })
+        // Doctor.findById(req.params.id)
+        //     .catch(err => {
+        //         message: "bad id"
+        //     })
+        // FavoriteDoctor.findById(req.params.id)
+        //     .then(doctor => {
+        //         if (doctor) {
+        //             res.status(500).send({
+        //                 message: "this doctor is already a favorite"
+        //             })
+        //         }
+        //         else {
+        //             FavoriteDoctor.create(req.params.id)
+        //             .save()
+        //             .then(fav_doc => {
+        //                 console.log(fav_doc)
+        //                 res.status(200).send(fav_doc);
+        //             })
+        //             .catch(err => {
+        //                 res.status(500).send({
+        //                     message: "doc creation error"
+        //                 })
+        //             })
+        //         }
+        //     })
+        //     .catch(nodoctor => {
+        //         res.status(500).send({
+        //             message: "some other error"
+        //         })
+        //     })
+
+        // Doctor.findById(req.params.id)
+        //     .then(doctor => {
+        //         FavoriteDoctor.create(doctor._id)
+        //             .save()
+        //             .then(fav_doc => {
+        //                 console.log(fav_doc)
+        //                 res.status(200).send(fav_doc);
+        //             })
+        //     })
+
+            
     });
     
     //works
@@ -178,7 +227,15 @@ router.route("/doctors/:id/goodparent")
 router.route("/doctors/favorites/:doctor_id")
     .delete((req, res) => {
         console.log(`DELETE /doctors/favorites/${req.params.doctor_id}`);
-        res.status(501).send();
+        FavoriteDoctor.findOneAndDelete(req.params.id)
+            .then(doc => {
+                res.status(200).send(null);
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message: "id error"
+                })
+            })
     });
 
 router.route("/companions")
@@ -349,7 +406,15 @@ router.route("/companions/:id/friends")
 router.route("/companions/favorites/:companion_id")
     .delete((req, res) => {
         console.log(`DELETE /companions/favorites/${req.params.companion_id}`);
-        res.status(501).send();
+        FavoriteCompanion.findOneAndDelete(req.params.id)
+            .then(comp => {
+                res.status(200).send(null);
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message: "id error"
+                })
+            })
     });
 
 module.exports = router;

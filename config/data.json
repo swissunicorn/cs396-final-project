@@ -1,619 +1,695 @@
 {
-    "doctors": [
+    "restaurants": [
         {
-            "seasons": [
-                1,
-                2,
-                3,
-                4
+            "name": "Lou Malnati's",
+            "location": "1850 Sherman Ave, Evanston, IL 60201",
+            "tags": [
+                "italian",
+                "outdoor seating",
+                "american",
+                "vegetarian",
+                "wildcard discount"
             ],
-            "_id": "6075029f746e3f38a5f0e947",
-            "name": "William Hartnell",
-            "doc_id": "d1"
+            "price": "$$",
+            "rating": 4.3
         },
         {
-            "seasons": [
-                4,
-                5,
-                6
+            "name": "Shang Noodle",
+            "location": "608 Davis St #4419, Evanston, IL 60201",
+            "tags": [
+                "asian",
+                "chinese",
+                "bubble tea",
+                "good drinks",
+                "vegetarian"
             ],
-            "_id": "6075029f746e3f38a5f0e948",
-            "name": "Patrick Troughton",
-            "doc_id": "d2"
+            "price": "$$",
+            "rating": 4.7
         },
         {
-            "seasons": [
-                7,
-                8,
-                9,
-                10,
-                11
+            "name": "Peppercorns Kitchen",
+            "location": "620 Davis St #4419, Evanston, IL 60201",
+            "tags": [
+                "asian",
+                "chinese",
+                "dessert",
+                "bubble tea",
+                "vegetarian"
             ],
-            "_id": "6075029f746e3f38a5f0e949",
-            "name": "Jon Pertwee",
-            "doc_id": "d3"
+            "price": "$$",
+            "rating": 4.4
         },
         {
-            "seasons": [
-                12,
-                13,
-                14,
-                15,
-                16,
-                17,
-                18
+            "name": "Soban Korea",
+            "location": "2824, 819 Noyes St, Evanston, IL 60201",
+            "tags": [
+                "asian",
+                "korean"
             ],
-            "_id": "6075029f746e3f38a5f0e94a",
-            "name": "Tom Baker",
-            "doc_id": "d4"
+            "price": "$",
+            "rating": 4.4
         },
         {
-            "seasons": [
-                19,
-                20,
-                21
+            "name": "Koco Table",
+            "location": "720 1/2 Clark St, Evanston, IL 60201",
+            "tags": [
+                "asian",
+                "korean"
             ],
-            "_id": "6075029f746e3f38a5f0e94b",
-            "name": "Peter Davison",
-            "doc_id": "d5"
+            "price": "$",
+            "rating": 4.3
         },
         {
-            "seasons": [
-                22,
-                23
+            "name": "Kokomo",
+            "location": "1639 Orrington Ave, Evanston, IL 60201",
+            "tags": [
+                "asian",
+                "korean",
+                "fried food"
             ],
-            "_id": "6075029f746e3f38a5f0e94c",
-            "name": "Colin Baker",
-            "doc_id": "d6"
+            "price": "$$$",
+            "rating": 4.1
         },
         {
-            "seasons": [
-                24,
-                25,
-                26
+            "name": "Cozy Noodles & Rice",
+            "location": "1018 Davis St, Evanston, IL 60201",
+            "tags": [
+                "asian",
+                "thai",
+                "vegetarian",
+                "dessert",
+                "good drinks",
+                "wildcard discount"
             ],
-            "_id": "6075029f746e3f38a5f0e94d",
-            "name": "Sylvester McCoy",
-            "doc_id": "d7"
+            "price": "$",
+            "rating": 3.9
         },
         {
-            "seasons": [],
-            "_id": "6075029f746e3f38a5f0e94e",
-            "name": "Paul McGann",
-            "doc_id": "d8"
+            "name": "10Q Chicken",
+            "location": "816 Church St, Evanston, IL 60201",
+            "tags": [
+                "asian",
+                "korean",
+                "fried food",
+                "dessert",
+                "sandwiches"
+            ],
+            "price": "$",
+            "rating": 4.7
         },
         {
-            "seasons": [
-                34,
-                35,
-                36
+            "name": "Table to Stix",
+            "location": "1007 Davis St, Evanston, IL 60201",
+            "tags": [
+                "asian",
+                "japanese"
             ],
-            "_id": "6075029f746e3f38a5f0e952",
-            "name": "Peter Capaldi",
-            "doc_id": "d12"
+            "price": "$$",
+            "rating": 4.5
         },
         {
-            "seasons": [
-                28,
-                29,
-                30
+            "name": "Bat 17",
+            "location": "1709 Benson Ave, Evanston, IL 60201",
+            "tags": [
+                "breakfast",
+                "american",
+                "sandwiches",
+                "vegetarian",
+                "alcohol",
+                "wildcard discount"
             ],
-            "_id": "6075029f746e3f38a5f0e950",
-            "name": "David Tennant",
-            "doc_id": "d10"
+            "price": "$$",
+            "rating": 4.3
         },
         {
-            "seasons": [
-                27
+            "name": "Edzo's",
+            "location": "1571 Sherman Ave, Evanston, IL 60201",
+            "tags": [
+                "american",
+                "sandwiches",
+                "fried food",
+                "dessert",
+                "outdoor seating",
+                "wildcard discount"
             ],
-            "_id": "6075029f746e3f38a5f0e94f",
-            "name": "Christopher Eccelson",
-            "doc_id": "d9"
+            "price": "$",
+            "rating": 4.2
         },
         {
-            "seasons": [
-                37,
-                38,
-                39
+            "name": "Aloha Poke",
+            "location": "630 Davis St, Evanston, IL 60201",
+            "tags": [
+                "asian",
+                "outdoor seating",
+                "vegetarian",
+                "outdoor seating"
             ],
-            "_id": "6075029f746e3f38a5f0e953",
-            "name": "Jodie Whittaker",
-            "doc_id": "d13"
+            "price": "$$",
+            "rating": 3.8
         },
         {
-            "seasons": [
-                31,
-                32,
-                33
+            "name": "Prairie Moon",
+            "location": "1635 Chicago Ave, Evanston, IL 60201",
+            "tags": [
+                "american",
+                "alcohol",
+                "sandwiches",
+                "dessert",
+                "outdoor seating",
+                "wildcard discount"
             ],
-            "_id": "6075029f746e3f38a5f0e951",
-            "name": "Matt Smith",
-            "doc_id": "d11"
+            "price": "$$",
+            "rating": 4.3
+        },
+        {
+            "name": "Tomate",
+            "location": "914 Noyes St, Evanston, IL 60201",
+            "tags": [
+                "spanish/mexican",
+                "outdoor seating",
+                "good drinks",
+                "vegetarian"
+            ],
+            "price": "$",
+            "rating": 4.8
+        },
+        {
+            "name": "Viet Nom Nom",
+            "location": "618 1/2 Church St, Evanston, IL 60201",
+            "tags": [
+                "asian",
+                "good drinks",
+                "sandwiches",
+                "vegetarian",
+                "outdoor seating",
+                "vietnamese"
+            ],
+            "price": "$",
+            "rating": 4.5
+        },
+        {
+            "name": "Dave's New Kitchen",
+            "location": "815 Noyes St, Evanston, IL 60201",
+            "tags": [
+                "italian",
+                "dessert",
+                "vegetarian"
+            ],
+            "price": "$$",
+            "rating": 4.5
+        },
+        {
+            "name": "Blaze Pizza",
+            "location": "1737 Sherman Ave, Evanston, IL 60201",
+            "tags": [
+                "american",
+                "vegetarian",
+                "outdoor seating",
+                "wildcard discount"
+            ],
+            "price": "$",
+            "rating": 4.3
+        },
+        {
+            "name": "Mod Pizza",
+            "location": "1999 Campus Dr, Evanston, IL 60208",
+            "tags": [
+                "american",
+                "vegetarian"
+            ],
+            "price": "$",
+            "rating": 5.0
+        },
+        {
+            "name": "Lao Sze Chuan",
+            "location": "1633 Orrington Ave, Evanston, IL 60201",
+            "tags": [
+                "asian",
+                "chinese",
+                "good drinks",
+                "alcohol",
+                "dessert",
+                "vegetarian"
+            ],
+            "price": "$$",
+            "rating": 3.9
+        },
+        {
+            "name": "Farmhouse",
+            "location": "703 Church St, Evanston, IL 60201",
+            "tags": [
+                "outdoor seating",
+                "alcohol",
+                "american",
+                "wildcard discount"
+            ],
+            "price": "$$",
+            "rating": 4.2
+        },
+        {
+            "name": "Le Peep",
+            "location": "827 Church St, Evanston, IL 60202",
+            "tags": [
+                "breakfast",
+                "american",
+                "good drinks",
+                "wildcard discount"
+            ],
+            "price": "$$",
+            "rating": 4.4
+        },
+        {
+            "name": "The Barn Steakhouse",
+            "location": "1016 Church St Rear, Evanston, IL 60201",
+            "tags": [
+                "alcohol",
+                "dessert"
+            ],
+            "price": "$$$$",
+            "rating": 4.5
+        },
+        {
+            "name": "Joy Yee",
+            "location": "533 Davis St, Evanston, IL 60201",
+            "tags": [
+                "asian", 
+                "chinese",
+                "korean",
+                "japanese",
+                "bubble tea",
+                "good drinks",
+                "vegetarian"
+            ],
+            "price": "$$",
+            "rating": 4.4
+        },
+        {
+            "name": "La Cocinita",
+            "location": "1625 Chicago Ave, Evanston, IL 60201",
+            "tags": [
+                "spanish/mexican",
+                "dessert",
+                "wildcard discount"
+            ],
+            "price": "$",
+            "rating": 4.5
+        },
+        {
+            "name": "Tapas Barcelona",
+            "location": "1615 Chicago Ave, Evanston, IL 60201",
+            "tags": [
+                "outdoor seating",
+                "vegetarian",
+                "dessert",
+                "spanish/mexican"
+            ],
+            "price": "$$",
+            "rating": 4.5
+        },
+        {
+            "name": "Koi Fine Asian Cuisine & Lounge",
+            "location": "624 Davis St, Evanston, IL 60201",
+            "tags": [
+                "asian",
+                "outdoor seating",
+                "alcohol",
+                "vegetarian",
+                "japanese",
+                "wildcard discount"
+            ],
+            "price": "$$",
+            "rating": 4.3
+        },
+        {
+            "name": "Potbelly Sandwich Shop",
+            "location": "630 Davis St, Evanston, IL 60201",
+            "tags": [
+                "sandwiches",
+                "dessert"
+            ],
+            "price": "$",
+            "rating": 4.3
+        },
+        {
+            "name": "Stacked & Folded",
+            "location": "824 Noyes St, Evanston, IL 60201",
+            "tags": [
+                "sandwiches",
+                "spanish/mexican",
+                "american", 
+                "wildcard discount"
+            ],
+            "price": "$$",
+            "rating": 4.4
+        },
+        {
+            "name": "NaKorn",
+            "location": "1622 Orrington Ave, Evanston, IL 60201",
+            "tags": [
+                "asian",
+                "thai",
+                "dessert",
+                "vegetarian",
+                "alcohol",
+                "good drinks",
+                "wildcard discount"
+
+            ],
+            "price": "$$",
+            "rating": 4.5
+        },
+        {
+            "name": "Giordano's",
+            "location": "1527 Chicago Ave, Evanston, IL 60201",
+            "tags": [
+                "american",
+                "italian",
+                "dessert",
+                "sandwiches",
+                "vegetarian"
+            ],
+            "price": "$$",
+            "rating": 4.3
+        },
+        {
+            "name": "Trattoria D.O.C.",
+            "location": "706 Main St, Evanston, IL 60202",
+            "tags": [
+                "wildcard discount",
+                "italian",
+                "vegetarian",
+                "dessert"
+            ],
+            "price": "$$",
+            "rating": 4.4
+        },
+        {
+            "name": "Todoroki",
+            "location": "526 Davis St, Evanston, IL 60201",
+            "tags": [
+                "wildcard discount",
+                "asian",
+                "japanese"
+            ],
+            "price": "$$",
+            "rating": 4.2
+        },
+        {
+            "name": "Shinsen Evanston",
+            "location": "1322 Chicago Ave, Evanston, IL 60201",
+            "tags": [
+                "wildcard discount",
+                "asian",
+                "japanese",
+                "vegetarian",
+                "dessert",
+                "good drinks"
+            ],
+            "price": "$$",
+            "rating": 4.8
+        },
+        {
+            "name": "527 Cafe",
+            "location": "527 Davis St, Evanston, IL 60201",
+            "tags": [
+                "bubble tea",
+                "good drinks",
+                "dessert",
+                "asian",
+                "chinese",
+                "taiwanese",
+                "sandwiches",
+                "fried food"
+
+            ],
+            "price": "$",
+            "rating": 4.2
+        },
+        {
+            "name": "Pho Phu Linh",
+            "location": "4741 Main St, Skokie, IL 60076",
+            "tags": [
+                "asian",
+                "vietnamese",
+                "sandwiches",
+                "japanese",
+                "good drinks",
+                "chinese",
+                "vegetarian"
+            ],
+            "price": "$",
+            "rating": 4.4
+        },
+        {
+            "name": "Kuni's Japanese Restaurant",
+            "location": "511 Main St ste a, Evanston, IL 60202",
+            "tags": [
+                "asian",
+                "japanese",
+                "vegetarian"
+            ],
+            "price": "$$",
+            "rating": 4.6
+        },
+        {
+            "name": "Sea Ranch Sushi",
+            "location": "518 Dempster St, Evanston, IL 60202",
+            "tags": [
+                "asian",
+                "japanese"
+            ],
+            "price": "$",
+            "rating": 4.6
+        },
+        {
+            "name": "Mt. Everest Restaurant",
+            "location": "630 Church St, Evanston, IL 60201",
+            "tags": [
+                "wildcard discount",
+                "indian",
+                "vegetarian"
+            ],
+            "price": "$$",
+            "rating": 4.2
+        },
+        {
+            "name": "Siam Splendour",
+            "location": "1125 Emerson St, Evanston, IL 60201",
+            "tags": [
+                "wildcard discount",
+                "asian",
+                "thai",
+                "dessert",
+                "good drinks",
+                "vegetarian"
+            ],
+            "price": "$",
+            "rating": 4.4
+        },
+        {
+            "name": "Kansaku",
+            "location": "1514 Sherman Ave, Evanston, IL 60201",
+            "tags": [
+                "asian",
+                "japanese",
+                "vegetarian"
+            ],
+            "price": "$$",
+            "rating": 4.5
+        },
+        {
+            "name": "Ovo Frito Cafe",
+            "location": "1936 Maple Ave, Evanston, IL 60201",
+            "tags": [
+                "wildcard discount",
+                "breakfast",
+                "spanish/mexican"
+            ],
+            "price": "$$",
+            "rating": 4.7
         }
+
     ],
-    "companions": [
+
+    "cafes": [
         {
-            "doctors": [
-                "6075029f746e3f38a5f0e947"
+            "name": "Kung Fu Tea",
+            "location": "726 Clark St, Evanston, IL 60201",
+            "tags": [
+                "bubble tea",
+                "asian snacks",
+                "snacks",
+                "coffee",
+                "iced tea",
+                "food"
             ],
-            "seasons": [
-                1,
-                2
-            ],
-            "_id": "607502a0746e3f38a5f0e954",
-            "alive": true,
-            "character": "Susan Foreman",
-            "name": "Carole Ann Ford"
+            "price": "$",
+            "rating": 4.3
         },
         {
-            "doctors": [
-                "6075029f746e3f38a5f0e948"
+            "name": "Patisserie Coralie",
+            "location": "600 Davis St, Evanston, IL 60201",
+            "tags": [
+                "snacks",
+                "coffee",
+                "local",
+                "food"
             ],
-            "seasons": [
-                4
-            ],
-            "_id": "607502a0746e3f38a5f0e957",
-            "alive": true,
-            "character": "Polly",
-            "name": "Anneke Wills"
+            "price": "$$",
+            "rating": 4.4
         },
         {
-            "doctors": [
-                "6075029f746e3f38a5f0e948"
+            "name": "Philz Coffee",
+            "location": "1030 Davis St, Evanston, IL 60201",
+            "tags": [
+                "wildcard discount",
+                "snacks",
+                "coffee"
             ],
-            "seasons": [
-                4
-            ],
-            "_id": "607502a0746e3f38a5f0e958",
-            "alive": true,
-            "character": "Ben Jackson",
-            "name": "Michael Craze"
+            "price": "$$",
+            "rating": 4.5
         },
         {
-            "doctors": [
-                "6075029f746e3f38a5f0e94a"
+            "name": "Tealicious Bubble",
+            "location": "1565 Sherman Ave, Evanston, IL 60201",
+            "tags": [
+                "bubble tea",
+                "asian snacks",
+                "snacks",
+                "study spot",
+                "outdoor seating",
+                "local",
+                "wildcard discount",
+                "food"
             ],
-            "seasons": [
-                12,
-                13
-            ],
-            "_id": "607502a0746e3f38a5f0e95d",
-            "alive": true,
-            "character": "Harry Sullivan",
-            "name": "Ian Merter"
+            "price": "$",
+            "rating": 4.6
         },
         {
-            "doctors": [
-                "6075029f746e3f38a5f0e947"
+            "name": "Starbucks",
+            "location": "Norris University Center, Campus Dr, Evanston, IL 60208",
+            "tags": [
+                "coffee",
+                "snacks",
+                "study spot",
+                "iced tea"
             ],
-            "seasons": [
-                1,
-                2
-            ],
-            "_id": "607502a0746e3f38a5f0e955",
-            "alive": true,
-            "character": "Barbara Wright",
-            "name": "Jacqueline Hill"
+            "price": "$$",
+            "rating": 3.7
         },
         {
-            "doctors": [
-                "6075029f746e3f38a5f0e948"
+            "name": "Colectivo Coffee",
+            "location": "716 Church St, Evanston, IL 60201",
+            "tags": [
+                "coffee",
+                "snacks",
+                "study spot",
+                "iced tea",
+                "food",
+                "local"   
             ],
-            "seasons": [
-                4,
-                5,
-                6,
-                22
-            ],
-            "_id": "607502a0746e3f38a5f0e959",
-            "alive": true,
-            "character": "Jamie McCrimmon",
-            "name": "Frazer Hines"
+            "price": "$$",
+            "rating": 4.5
         },
         {
-            "doctors": [
-                "6075029f746e3f38a5f0e949"
+            "name": "Dunkin Donuts",
+            "location": "1999 Campus Dr, Evanston, IL 60208",
+            "tags": [
+                "coffee",
+                "snacks",
+                "study spot"
             ],
-            "seasons": [
-                7
-            ],
-            "_id": "607502a0746e3f38a5f0e95a",
-            "alive": true,
-            "character": "Liz Shaw",
-            "name": "Caroline John"
+            "price": "$",
+            "rating": 4
         },
         {
-            "doctors": [
-                "6075029f746e3f38a5f0e949"
+            "name": "Cupitol Coffee & Eatery",
+            "location": "812 Grove St, Evanston, IL 60201",
+            "tags": [
+                "coffee",
+                "outdoor seating",
+                "alcohol",
+                "iced tea",
+                "sandwiches",
+                "food",
+                "snacks",
+                "breakfast",
+                "local"
             ],
-            "seasons": [
-                8,
-                9,
-                10
-            ],
-            "_id": "607502a0746e3f38a5f0e95b",
-            "alive": true,
-            "character": "Jo Grant",
-            "name": "Katy Manning"
+            "price": "$$",
+            "rating": 4.5
         },
         {
-            "doctors": [
-                "6075029f746e3f38a5f0e949",
-                "6075029f746e3f38a5f0e94a"
+            "name": "Peet's Coffee",
+            "location": "1622 Chicago Ave, Evanston, IL 60201",
+            "tags": [
+                "wildcard discount",
+                "coffee",
+                "sandwiches",
+                "study spot",
+                "outdoor seating"
             ],
-            "seasons": [
-                11,
-                12,
-                13,
-                14
-            ],
-            "_id": "607502a0746e3f38a5f0e95c",
-            "alive": true,
-            "character": "Sarah Jane Smith",
-            "name": "Elisabeth Sladen"
+            "price": "$",
+            "rating": 4.4
         },
         {
-            "doctors": [
-                "6075029f746e3f38a5f0e947"
+            "name": "Newport Coffee House",
+            "location": "622 Davis St, Evanston, IL 60201",
+            "tags": [
+                "coffee",
+                "local"
             ],
-            "seasons": [
-                1,
-                2
-            ],
-            "_id": "607502a0746e3f38a5f0e956",
-            "alive": true,
-            "character": "Ian Chesterton",
-            "name": "William Russell"
+            "price": "$$",
+            "rating": 4.8
         },
         {
-            "doctors": [
-                "6075029f746e3f38a5f0e94a"
+            "name": "Coffee Lab",
+            "location": "910 Noyes St, Evanston, IL 60201",
+            "tags": [
+                "coffee",
+                "local",
+                "sandwiches",
+                "iced tea",
+                "asian snacks",
+                "snacks"
             ],
-            "seasons": [
-                14,
-                15
-            ],
-            "_id": "607502a0746e3f38a5f0e95e",
-            "alive": true,
-            "character": "Leela",
-            "name": "Louise Jameson"
+            "price": "$",
+            "rating": 4.6
         },
         {
-            "doctors": [
-                "6075029f746e3f38a5f0e94a",
-                "6075029f746e3f38a5f0e94b"
+            "name": "Backlot Coffee",
+            "location": "1549 Sherman Avenue",
+            "tags": [
+                "coffee",
+                "local",
+                "iced tea"
             ],
-            "seasons": [
-                18,
-                19
-            ],
-            "_id": "607502a0746e3f38a5f0e960",
-            "alive": false,
-            "character": "Adric",
-            "name": "Matthew Waterhouse"
+            "price": "$",
+            "rating": 4.7
         },
         {
-            "doctors": [
-                "6075029f746e3f38a5f0e94a"
+            "name": "Bagel Art",
+            "location": "615 Dempster St, Evanston, IL 60201",
+            "tags": [
+                "wildcard discount",
+                "local",
+                "snacks",
+                "coffee",
+                "sandwiches"
             ],
-            "seasons": [
-                15,
-                16,
-                17,
-                18
-            ],
-            "_id": "607502a0746e3f38a5f0e95f",
-            "alive": false,
-            "character": "K-9",
-            "name": "John Leeson"
+            "price": "$",
+            "rating": 4.6
         },
         {
-            "doctors": [
-                "6075029f746e3f38a5f0e94a",
-                "6075029f746e3f38a5f0e94b"
+            "name": "Brothers K Coffeehouse",
+            "location": "500 Main St, Evanston, IL 60202",
+            "tags": [
+                "coffee",
+                "local",
+                "snacks"
             ],
-            "seasons": [
-                18,
-                19,
-                20
-            ],
-            "_id": "607502a0746e3f38a5f0e961",
-            "alive": true,
-            "character": "Nyssa",
-            "name": "Sarah Sutton"
-        },
-        {
-            "doctors": [
-                "6075029f746e3f38a5f0e94d"
-            ],
-            "seasons": [
-                24,
-                25,
-                26
-            ],
-            "_id": "607502a0746e3f38a5f0e966",
-            "alive": true,
-            "character": "Ace",
-            "name": "Sophie Aldred"
-        },
-        {
-            "doctors": [
-                "6075029f746e3f38a5f0e94c",
-                "6075029f746e3f38a5f0e94d"
-            ],
-            "seasons": [
-                23,
-                24
-            ],
-            "_id": "607502a0746e3f38a5f0e965",
-            "alive": true,
-            "character": "Mel Bush",
-            "name": "Bonnie Langford"
-        },
-        {
-            "doctors": [
-                "6075029f746e3f38a5f0e94a",
-                "6075029f746e3f38a5f0e94b"
-            ],
-            "seasons": [
-                18,
-                19,
-                20,
-                21
-            ],
-            "_id": "607502a0746e3f38a5f0e962",
-            "alive": true,
-            "character": "Tegan Jovanka",
-            "name": "Janet Fielding"
-        },
-        {
-            "doctors": [
-                "6075029f746e3f38a5f0e94b"
-            ],
-            "seasons": [
-                20,
-                21
-            ],
-            "_id": "607502a0746e3f38a5f0e963",
-            "alive": true,
-            "character": "Vislor Turlough",
-            "name": "Mark Strickson"
-        },
-        {
-            "doctors": [
-                "6075029f746e3f38a5f0e94b",
-                "6075029f746e3f38a5f0e94c"
-            ],
-            "seasons": [
-                21,
-                22,
-                23
-            ],
-            "_id": "607502a0746e3f38a5f0e964",
-            "alive": true,
-            "character": "Peri Brown",
-            "name": "Nicola Bryant"
-        },
-        {
-            "doctors": [
-                "6075029f746e3f38a5f0e94e"
-            ],
-            "seasons": [],
-            "_id": "607502a0746e3f38a5f0e967",
-            "alive": true,
-            "character": "Grace Holloway",
-            "name": "Daphne Ashbrook"
-        },
-        {
-            "doctors": [
-                "6075029f746e3f38a5f0e94f",
-                "6075029f746e3f38a5f0e950"
-            ],
-            "seasons": [
-                27,
-                28,
-                30
-            ],
-            "_id": "607502a0746e3f38a5f0e968",
-            "alive": true,
-            "character": "Rose Tyler",
-            "name": "Billie Piper"
-        },
-        {
-            "doctors": [
-                "6075029f746e3f38a5f0e94f",
-                "6075029f746e3f38a5f0e950",
-                "6075029f746e3f38a5f0e953"
-            ],
-            "seasons": [
-                27,
-                29,
-                30,
-                38
-            ],
-            "_id": "607502a0746e3f38a5f0e96a",
-            "alive": true,
-            "character": "Captain Jack Harkness",
-            "name": "John Barrowman"
-        },
-        {
-            "doctors": [
-                "6075029f746e3f38a5f0e94f"
-            ],
-            "seasons": [
-                27
-            ],
-            "_id": "607502a0746e3f38a5f0e969",
-            "alive": true,
-            "character": "Adam Mitchell",
-            "name": "Bruno Langley"
-        },
-        {
-            "doctors": [
-                "6075029f746e3f38a5f0e950"
-            ],
-            "seasons": [
-                28,
-                30
-            ],
-            "_id": "607502a0746e3f38a5f0e96b",
-            "alive": true,
-            "character": "Mickey Smith",
-            "name": "Noel Clarke"
-        },
-        {
-            "doctors": [
-                "6075029f746e3f38a5f0e950"
-            ],
-            "seasons": [
-                29,
-                30
-            ],
-            "_id": "607502a0746e3f38a5f0e96d",
-            "alive": true,
-            "character": "Martha Jones",
-            "name": "Freema Agyeman"
-        },
-        {
-            "doctors": [
-                "6075029f746e3f38a5f0e950"
-            ],
-            "seasons": [
-                30
-            ],
-            "_id": "607502a0746e3f38a5f0e96c",
-            "alive": true,
-            "character": "Donna Noble",
-            "name": "Catherine Tate"
-        },
-        {
-            "doctors": [
-                "6075029f746e3f38a5f0e951"
-            ],
-            "seasons": [
-                31,
-                32,
-                33
-            ],
-            "_id": "607502a0746e3f38a5f0e96e",
-            "alive": false,
-            "character": "Amy Pond",
-            "name": "Karen Gillan"
-        },
-        {
-            "doctors": [
-                "6075029f746e3f38a5f0e951",
-                "6075029f746e3f38a5f0e952"
-            ],
-            "seasons": [
-                33,
-                34,
-                35
-            ],
-            "_id": "607502a0746e3f38a5f0e971",
-            "alive": false,
-            "character": "Clara Oswald",
-            "name": "Jenna Coleman"
-        },
-        {
-            "doctors": [
-                "6075029f746e3f38a5f0e951"
-            ],
-            "seasons": [
-                31,
-                32,
-                33
-            ],
-            "_id": "607502a0746e3f38a5f0e96f",
-            "alive": false,
-            "character": "Rory Williams",
-            "name": "Arthur Davill"
-        },
-        {
-            "doctors": [
-                "6075029f746e3f38a5f0e951",
-                "6075029f746e3f38a5f0e952"
-            ],
-            "seasons": [
-                32,
-                35
-            ],
-            "_id": "607502a0746e3f38a5f0e970",
-            "alive": true,
-            "character": "River Song",
-            "name": "Alex Kingston"
-        },
-        {
-            "doctors": [
-                "6075029f746e3f38a5f0e952"
-            ],
-            "seasons": [
-                36
-            ],
-            "_id": "607502a0746e3f38a5f0e972",
-            "alive": true,
-            "character": "Nardole",
-            "name": "Matt Lucas"
-        },
-        {
-            "doctors": [
-                "6075029f746e3f38a5f0e952"
-            ],
-            "seasons": [
-                36
-            ],
-            "_id": "607502a0746e3f38a5f0e973",
-            "alive": false,
-            "character": "Bill Potts",
-            "name": "Pearl Mackie"
-        },
-        {
-            "doctors": [
-                "6075029f746e3f38a5f0e953"
-            ],
-            "seasons": [
-                37,
-                38
-            ],
-            "_id": "607502a0746e3f38a5f0e974",
-            "alive": true,
-            "character": "Graham O'Brien",
-            "name": "Bradley Walsh"
-        },
-        {
-            "doctors": [
-                "6075029f746e3f38a5f0e953"
-            ],
-            "seasons": [
-                37,
-                38
-            ],
-            "_id": "607502a0746e3f38a5f0e975",
-            "alive": true,
-            "character": "Ryan Sinclair",
-            "name": "Tosin Cole"
-        },
-        {
-            "doctors": [
-                "6075029f746e3f38a5f0e953"
-            ],
-            "seasons": [
-                37,
-                38,
-                39
-            ],
-            "_id": "607502a0746e3f38a5f0e976",
-            "alive": true,
-            "character": "Yasmin Khan",
-            "name": "Mandip Gill"
+            "price": "$",
+            "rating": 4.6
         }
-    ],
-    "favoriteDoctors": [
-        { "doctor" : "6075029f746e3f38a5f0e94a" },
-        { "doctor" : "6075029f746e3f38a5f0e94f" }
-    ],
-    "favoriteCompanions": [
-        { "companion" : "607502a0746e3f38a5f0e95c" },
-        { "companion" : "607502a0746e3f38a5f0e966" }
     ]
 }

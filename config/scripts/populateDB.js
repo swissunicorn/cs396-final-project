@@ -1,11 +1,10 @@
 "use strict";
 
-const Companion = require("../../src/schema/Companion");
-const Doctor = require("../../src/schema/Doctor");
-const FavoriteDoctor = require("../../src/schema/FavoriteDoctor");
-const FavoriteCompanion = require("../../src/schema/FavoriteCompanion");
+const Restaurant = require("../../src/schema/Restaurant"); // doctor
+const Cafe = require("../../src/schema/Cafe"); // companion
 const data = require("../data.json");
 require("dotenv").config();
+// how to re-link something to github?
 
 const env = "" + process.env.NODE_ENV;
 
@@ -21,23 +20,17 @@ const populate = (callback) => {
             console.log("Could not connect to database.");
         }
         // console.log("Clearing database...");
-        const schemas = [ Companion, Doctor, FavoriteCompanion, FavoriteDoctor ];
+        const schemas = [ Restaurant, Cafe ];
         Promise
             .all(
                 // first delete any data that currently exists:
                 schemas.map(schema => schema.deleteMany())
             )
             .then(() => {
-                return Doctor.insertMany(data.doctors);
+                return Restaurant.insertMany(data.restaurants); // data.restaurants!
             })
             .then(() => {
-                return Companion.insertMany(data.companions);
-            })
-            .then(() => {
-                return FavoriteDoctor.insertMany(data.favoriteDoctors);
-            })
-            .then(() => {
-                return FavoriteCompanion.insertMany(data.favoriteCompanions);
+                return Cafe.insertMany(data.cafes);
             })
             .catch(err => {
                 console.log(err);

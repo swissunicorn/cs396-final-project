@@ -9,18 +9,6 @@ const Restaurant = require("./schema/Restaurant");
 const express = require("express");
 const router = express.Router();
 
-
-// completely resets your database.
-// really bad idea irl, but useful for testing
-router.route("/reset")
-    .get((_req, res) => {
-        resetDB(() => {
-            res.status(200).send({
-                message: "Data has been reset."
-            });
-        });
-    });
-
 router.route("/")
     .get((_req, res) => {
         console.log("GET /");
@@ -49,7 +37,7 @@ router.route("/restaurants")
         }
         else {
             const tag_list = req.query.tags.split(",")
-            Restaurant.find({tags: {$all: tag_list}}) // fix it so it has both
+            Restaurant.find({tags: {$all: tag_list}})
             .then(data => {
                 res.status(200).send(data);
             })

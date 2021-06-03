@@ -33,12 +33,12 @@ router.route("/")
 // Edit below this line
 // ---------------------------------------------------
 
-// can I just make it so I pass something in the req.body?
+
 router.route("/restaurants")
     .get((req, res) => {
         console.log("GET /restaurants");
-        console.log(req.body)
-        if(!req.body) { // no tags
+        console.log(req.query)
+        if(!req.query.tags) { // no tags
             Restaurant.find({})
             .then(data => {
                 res.status(200).send(data);
@@ -48,7 +48,8 @@ router.route("/restaurants")
             });
         }
         else {
-            Restaurant.find({tags: req.body.tags})
+            const tag_list = req.query.tags.split(",")
+            Restaurant.find({tags: {$all: tag_list}}) // fix it so it has both
             .then(data => {
                 res.status(200).send(data);
             })
@@ -56,7 +57,7 @@ router.route("/restaurants")
                 res.status(500).send(err);
             })
         }
-    })
+     })
     .post((req, res) => {
         console.log("POST /restaurants");
         res.status(500).send({
@@ -67,7 +68,7 @@ router.route("/restaurants")
 router.route("/cafes")
     .get((req, res) => {
         console.log("GET /cafes");
-        if(!req.body) {
+        if(!req.query.tags) {
             Cafe.find({})
             .then(data => {
                 res.status(200).send(data);
@@ -77,7 +78,8 @@ router.route("/cafes")
             });
         }
         else {
-            Cafe.find({tags: req.body.tags})
+            const tag_list = req.query.tags.split(",")
+            Cafe.find({tags: {$all: tag_list}})
             .then(data => {
                 res.status(200).send(data);
             })

@@ -6,6 +6,7 @@ const goButtonPress = () => { // probably need to make this into a function with
     // check if the address is valid
 
     // save the address
+    // if there is no address, or the address is invalid, you just can't sort anything. Make that work
 
     document.querySelector('header').innerHTML = `<h1>Suit your tastes!</h1>`;
     document.getElementById('page1-5').style.display = "block";

@@ -12,8 +12,13 @@
             <div id="page1">
                 <section id="address">
                     <!--type in address-->
-                    Please enter your address.
+                    <form>
+                        <!-- Name -->
+                        <label for="location">Please enter your location (address).</label>
+                        <input type="text" id="location">
+                    </form>
                 </section>
+                <p>If you do not enter a location, you will not be able to sort results by distance.</p>
                 <button class="btn" id="go" onclick="goButtonPress()">Go!</button>
             </div>
 

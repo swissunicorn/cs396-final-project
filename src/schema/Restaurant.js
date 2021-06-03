@@ -9,7 +9,7 @@ const RestaurantSchema = new Schema({
     },
     location: {
         type: Schema.Types.String,
-        required = true
+        required: true
     },
     tags: [Schema.Types.String],
     price: {

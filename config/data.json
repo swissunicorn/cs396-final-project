@@ -141,8 +141,7 @@
             "tags": [
                 "asian",
                 "outdoor seating",
-                "vegetarian",
-                "outdoor seating"
+                "vegetarian"
             ],
             "price": "$$",
             "rating": 3.8
@@ -403,6 +402,7 @@
                 "japanese",
                 "vegetarian",
                 "dessert",
+                "thai",
                 "good drinks"
             ],
             "price": "$$",
@@ -417,10 +417,8 @@
                 "dessert",
                 "asian",
                 "chinese",
-                "taiwanese",
                 "sandwiches",
                 "fried food"
-
             ],
             "price": "$",
             "rating": 4.2
@@ -600,7 +598,8 @@
             "tags": [
                 "coffee",
                 "snacks",
-                "study spot"
+                "study spot",
+                "breakfast"
             ],
             "price": "$",
             "rating": 4

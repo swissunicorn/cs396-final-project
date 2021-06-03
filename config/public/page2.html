@@ -9,10 +9,20 @@
             <h1>Suit your tastes!</h1>
         </header>
         <main>
-            <section id="idk yet">
-                <!--type in address-->
-                Select desired tags.
+            <div id="page2">
+            <section id="tag menu">
+                <p>Click on the dropdown to open/close tag selection.</p>
+                <div class="dropdown-menu">
+                    <button class="menu-btn" onclick="menuButtonPress()">Tags</button>
+                    <div class="menu-content">
+                        <a class="asian" onclick="addTag('asian')">Asian</a>
+                    </div>
+                </div>
             </section>
+            <section id="active tags">
+                <p>Searching for:</p>
+            </section>
+        </div>
         </main>
         <script src="page2.js" type="text/javascript"></script>
     </body>

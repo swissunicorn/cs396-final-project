@@ -32,60 +32,59 @@ router.route("/")
 // ---------------------------------------------------
 // Edit below this line
 // ---------------------------------------------------
+
+// can I just make it so I pass something in the req.body?
 router.route("/restaurants")
     .get((req, res) => {
         console.log("GET /restaurants");
-
-        // already implemented:
-        Restaurant.find({})
+        console.log(req.body)
+        if(!req.body) { // no tags
+            Restaurant.find({})
             .then(data => {
                 res.status(200).send(data);
             })
             .catch(err => {
                 res.status(500).send(err);
             });
+        }
+        else {
+            Restaurant.find({tags: req.body.tags})
+            .then(data => {
+                res.status(200).send(data);
+            })
+            .catch(err => {
+                res.status(500).send(err);
+            })
+        }
     })
     .post((req, res) => {
         console.log("POST /restaurants");
         res.status(500).send({
             message: "we don't need to post restaurants lol get out"
         })
-    });
-    
-    // need to modify this so that it's find by tags
-router.route("/doctors/:id")
-    .get((req, res) => {
-        console.log(`GET /doctors/${req.params.id}`);
-        Doctor.findById(req.params.id)
-            .then(doctor => {
-                if (doctor) {
-                    res.status(200).send(doctor);
-                }
-                else {
-                    res.status(404).send({
-                        message: "id does not exist"
-                    })
-                }
-            })
-            .catch(err => {
-                res.status(404).send({
-                    message: "other error"
-                })
-            })
-    })
-           
+    });     
 
 router.route("/cafes")
     .get((req, res) => {
         console.log("GET /cafes");
-        // already implemented:
-        Cafe.find({})
+        if(!req.body) {
+            Cafe.find({})
             .then(data => {
                 res.status(200).send(data);
             })
             .catch(err => {
                 res.status(500).send(err);
             });
+        }
+        else {
+            Cafe.find({tags: req.body.tags})
+            .then(data => {
+                res.status(200).send(data);
+            })
+            .catch(err => {
+                res.status(500).send(err);
+            })
+        }
     })
     .post((req, res) => {
         console.log("POST /cafes");
@@ -93,27 +92,5 @@ router.route("/cafes")
             message: "we are not posting to cafes"
         })
     });
-
-// again, edit this so that the tags work
-router.route("/companions/:id")
-    .get((req, res) => {
-        console.log(`GET /companions/${req.params.id}`);
-        Companion.findById(req.params.id)
-            .then(companion => {
-                if (companion) {
-                    res.status(200).send(companion);
-                }
-                else {
-                    res.status(404).send({
-                        message: "id does not exist"
-                    })
-                }
-            })
-            .catch(err => {
-                res.status(404).send({
-                    message: "other error"
-                })
-            })
-    })
 
 module.exports = router;

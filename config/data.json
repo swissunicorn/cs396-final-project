@@ -507,7 +507,16 @@
             "rating": 4.7
         },
         {
-            "name": "Next of Kin"
+            "name": "Next of Kin",
+            "location": "625 Davis St, Evanston, IL 60201",
+            "tags": [
+                "American",
+                "vegetarian",
+                "dessert",
+                "alcohol"
+            ],
+            "price": "$$",
+            "rating": 4.4
         }
 
     ],

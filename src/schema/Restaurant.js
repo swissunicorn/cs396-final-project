@@ -26,7 +26,6 @@ const RestaurantSchema = new Schema({
 RestaurantSchema.statics.create = function(obj) {
     const Restaurant = mongoose.model("Restaurant", RestaurantSchema);
     const restaurant = new Restaurant();
-    companion.alive = obj.alive;
     restaurant.name = obj.name;
     restaurant.location = obj.location;
     restaurant.tags = obj.tags;

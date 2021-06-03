@@ -2,12 +2,11 @@
 
 const resetDB = require("../config/scripts/populateDB")
 
-const Companion = require("./schema/Companion");
-const Doctor = require("./schema/Doctor");
+// I'm making doctor restaurant and companion cafe
+const Cafe = require("./schema/Cafe");
+const Restaurant = require("./schema/Restaurant");
 
 const express = require("express");
-const FavoriteDoctor = require("./schema/FavoriteDoctor");
-const FavoriteCompanion = require("./schema/FavoriteCompanion");
 const router = express.Router();
 
 
@@ -33,12 +32,12 @@ router.route("/")
 // ---------------------------------------------------
 // Edit below this line
 // ---------------------------------------------------
-router.route("/doctors")
+router.route("/restaurants")
     .get((req, res) => {
-        console.log("GET /doctors");
+        console.log("GET /restaurants");
 
         // already implemented:
-        Doctor.find({})
+        Restaurant.find({})
             .then(data => {
                 res.status(200).send(data);
             })
@@ -47,21 +46,13 @@ router.route("/doctors")
             });
     })
     .post((req, res) => {
-        console.log("POST /doctors");
-        if (!req.body.name || !req.body.seasons) {
-            res.status(500).send({
-                message: "missing data"
-            });
-            return;
-        }
-        Doctor.create(req.body)
-            .save()
-            .then(doctor => {
-                res.status(201).send(doctor);
-            })
+        console.log("POST /restaurants");
+        res.status(500).send({
+            message: "we don't need to post restaurants lol get out"
+        })
     });
     
-    //works
+    // need to modify this so that it's find by tags
 router.route("/doctors/:id")
     .get((req, res) => {
         console.log(`GET /doctors/${req.params.id}`);
@@ -82,45 +73,13 @@ router.route("/doctors/:id")
                 })
             })
     })
-    .patch((req, res) => {
-        console.log(`PATCH /doctors/${req.params.id}`);
-        Doctor.findOneAndUpdate(
-            {_id: req.params.id },
-            req.body,
-            { new: true }
-        )
-        .then(doctor => {
-            if(doctor) {
-                res.status(200).send(doctor);
-            }
-            else {
-                res.status(404).send({
-                    message: "id does not exist"
-                })
-            }
-        })
-    })
-    .delete((req, res) => {
-        console.log(`DELETE /doctors/${req.params.id}`);
-        Doctor.findOneAndDelete({_id: req.params.id})
-            .then(doctor => {
-                if(doctor) {
-                    res.status(200).send(null);
-                }
-                else {
-                    res.status(404).send({
-                        message: "id does not exist"
-                    });
-                }
-            })
-    });
            
 
-router.route("/companions")
+router.route("/cafes")
     .get((req, res) => {
-        console.log("GET /companions");
+        console.log("GET /cafes");
         // already implemented:
-        Companion.find({})
+        Cafe.find({})
             .then(data => {
                 res.status(200).send(data);
             })
@@ -129,20 +88,13 @@ router.route("/companions")
             });
     })
     .post((req, res) => {
-        console.log("POST /companions");
-        if (!req.body.name || !req.body.character || !req.body.alive) { // are these the only required attributes?
-            res.status(500).send({
-                message: "missing data"
-            });
-            return;
-        }
-        Companion.create(req.body)
-            .save()
-            .then(companion => {
-                res.status(201).send(companion);
-            })
+        console.log("POST /cafes");
+        res.status(500).send({
+            message: "we are not posting to cafes"
+        })
     });
 
+// again, edit this so that the tags work
 router.route("/companions/:id")
     .get((req, res) => {
         console.log(`GET /companions/${req.params.id}`);
@@ -163,37 +115,5 @@ router.route("/companions/:id")
                 })
             })
     })
-    .patch((req, res) => {
-        console.log(`PATCH /companions/${req.params.id}`);
-        Companion.findOneAndUpdate(
-            {_id: req.params.id },
-            req.body,
-            { new: true }
-        )
-        .then(companion => {
-            if(companion) {
-                res.status(200).send(companion);
-            }
-            else {
-                res.status(404).send({
-                    message: "id does not exist"
-                })
-            }
-        })
-    })
-    .delete((req, res) => {
-        console.log(`DELETE /companions/${req.params.id}`);
-        Companion.findOneAndDelete({_id: req.params.id})
-            .then(companion => {
-                if (companion) {
-                    res.status(200).send(null);
-                }
-                else {
-                    res.status(404).send({
-                        message: "invalid id"
-                    })
-                }
-            })
-    });
 
 module.exports = router;

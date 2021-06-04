@@ -121,14 +121,24 @@ const goBackChoice = () => {
     document.querySelector('.heading-restaurant').style.display = "";
     document.querySelector('.menu-content-cafe').style.display = "";
     document.querySelector('.menu-content-restaurant').style.display = "";
+    document.getElementById('tag buttons').innerHTML = "";
+    tags = [];
 }
 
-// TO-DO: make little buttons for the tags, and make it so tags get removed from the array when clicked on
+// TO-DO: add x's to the buttons
 function addTag(tag) {
     if(!tags.includes(tag)) {
         tags.push(tag)
+        document.getElementById('tag buttons').innerHTML += `<button class="btn" id="${tag}" onclick="removeTag('${tag}')">${tag}</button>`
     }
-    console.log(tags)
-    // display the selected tag as a button with an x on it that can be deleted
-    // 
+}
+
+function removeTag(tag) {
+    // remove tag from tags
+    tags.splice(tags.indexOf(tag), 1);
+    console.log(tags);
+    // remove the button
+    const elem = document.getElementById(tag);
+    elem.parentNode.removeChild(elem);
+
 }

@@ -12,6 +12,7 @@ const bodyConfig = {
 };
 app.use(express.urlencoded(bodyConfig));
 app.use(express.json(bodyConfig));
+app.use(express.static('public'));
 
 const middleware = require("./config/middleware");
 app.use(middleware.cors);

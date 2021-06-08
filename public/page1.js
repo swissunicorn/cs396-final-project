@@ -25,23 +25,23 @@ const goButtonPress = () => {
     document.getElementById('page1').style.display = "None";
 }
 
-function doGeoCode(address) {
-    // Get geocoder instance
-    var geocoder = new window.google.maps.Geocoder();
-    console.log(geocoder)
-    // Geocode the address
-    geocoder.geocode({
-      'address': address
-    }, function(results, status) {
-      if (status === google.maps.GeocoderStatus.OK && results.length > 0) {
+// function doGeoCode(address) {
+//     // Get geocoder instance
+//     var geocoder = new window.google.maps.Geocoder();
+//     console.log(geocoder)
+//     // Geocode the address
+//     geocoder.geocode({
+//       'address': address
+//     }, function(results, status) {
+//       if (status === google.maps.GeocoderStatus.OK && results.length > 0) {
   
-        // set it to the correct, formatted address if it's valid
-        address = results[0].formatted_address;;
+//         // set it to the correct, formatted address if it's valid
+//         address = results[0].formatted_address;;
   
-        // show an error if it's not
-      } else alert("Invalid address");
-    });
-  };
+//         // show an error if it's not
+//       } else alert("Invalid address");
+//     });
+//   };
 
 
 ////////////////////////
@@ -130,14 +130,12 @@ const searchButtonPress = () => {
 const menuButtonPress = () => {
     if(restOrCafe) { // restaurant
         if(document.querySelector('.menu-content-restaurant').style.display === "") {
-            // need to fix this
             document.querySelector('.menu-content-restaurant').style.display = "flex";
         } else {
             document.querySelector('.menu-content-restaurant').style.display = "";
         }
     } else { // cafe    
         if(document.querySelector('.menu-content-cafe').style.display === "") {
-            // need to fix this
             document.querySelector('.menu-content-cafe').style.display = "flex";
         } else {
             document.querySelector('.menu-content-cafe').style.display = "";
@@ -181,21 +179,26 @@ function removeTag(tag) {
 //////////////////////
 
 function callDistanceAPI(origin, dest) {
-    fetch('http://localhost:8081/key')
+    fetch(`http://localhost:8081/distance?origin=${origin}&destination=${dest}`)
         .then(response => response.json())
-        .then(key => {
-            console.log(key)
-            console.log(key.key)
-            let url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' + origin + '&destinations=' + dest + '&key=' + key.key + '&units=imperial';
-            fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                // idk man
-                console.log(data[0])
-                console.log(data[0][0])
-                return data;
-            })
+        .then(distance => {
+            return distance;
         })
+
+
+    // fetch('http://localhost:8081/key')
+    //     .then(response => response.json())
+    //     .then(key => {
+    //         let url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' + origin + '&destinations=' + dest + '&key=' + key.key + '&units=imperial';
+    //         fetch(url)
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             // idk man
+    //             console.log(data[0])
+    //             console.log(data[0][0])
+    //             return data;
+    //         })
+    //     })
 }
 
 let result_array = [];
@@ -212,13 +215,13 @@ function parseFetchResult(res, callback) {
     }
     else {
         for(let i = 0; i < res.length; i++) {
-            //     dest = makeDestinationString(res[i].location);
-            //     origin = address_str;
-            //     console.log(origin)
-            //     console.log(dest)
-            //     distance = callDistanceAPI(origin, dest);
-            //     res_distances.push(distance);
-            result_array.push([res[i].location, res[i].name, res[i].price, res[i].rating, res[i].tags])
+            dest = makeDestinationString(res[i].location);
+            origin = address_str;
+            console.log(dest)
+            console.log(origin)
+            distance = callDistanceAPI(origin, dest);
+            // then add the distance in the array I'm pushing to
+            result_array.push([res[i].location, res[i].name, res[i].price, res[i].rating, res[i].tags], distance)
         }
         console.log(result_array);
         callback();
@@ -252,7 +255,7 @@ const displayGrid = () => {
 }
 
 // result_array.push([res[i].location, res[i].name, res[i].price, res[i].rating, res[i].tags])
-// [0]: location, [1]: name, [2]: price, [3]: rating, [4]: tags
+// [0]: location, [1]: name, [2]: price, [3]: rating, [4]: tags, [5]: distance
 
 function makeJSON(rescaf) {
     res_string = `<section>`;
@@ -260,6 +263,7 @@ function makeJSON(rescaf) {
     res_string += `<p> ${rescaf[0]} </p>`;
     res_string += `<p> ${rescaf[3]} </p>`;
     res_string += `<p> ${rescaf[2]} </p>`;
+    // distance
     tag_string = "";
     for(let i = 0; i < rescaf[4].length; i++) {
         tag_string += rescaf[4][i] + ", ";

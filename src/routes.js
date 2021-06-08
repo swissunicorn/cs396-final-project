@@ -91,22 +91,39 @@ router.route("/key")
 
 router.route("/distance")
     .get((req, res) => {
-        let origin = req.query.origin;
-        let dest = req.query.destination;
-        let url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + origin + "&destinations=" + dest + `&key=${process.env.API_KEY}` + "&units=imperial";
+        console.log(req.query);
+        let origin_raw = req.query.origin;
+        let dest_raw = req.query.destination;
+        let origin = "";
+        let dest = "";
+        let origin_arr = origin_raw.split(" ");
+        let dest_arr = dest_raw.split(" ");
+        for(let i = 0; i < origin_arr.length; i++) {
+            origin += origin_arr[i];
+            if(i != origin_arr.length - 1) {
+                origin += "+";
+            }
+        }
+        for(let j = 0; j < dest_arr.length; j++) {
+            dest += dest_arr[j];
+            if(j != dest_arr.length - 1) {
+                dest += "+";
+            }
+        }
+        let url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + origin + "&destinations=" + dest + "&key=" + process.env.API_KEY + "&units=imperial";
+        console.log(url)
         fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            console.log(rows)
-            console.log(rows[0])
-            console.log(rows[0][0].text)
-            res.status(200).send(data);
-        })
-        .catch(err => {
-            res.status(404).send({
-                message: "you screwed up"
+            .then(response => response.json())
+            .then(data => {
+                console.log(rows)
+                console.log(data.rows[0].elements[0].distance.text) // having difficulty with this
+                res.status(200).send(data.rows[0].elements[0].distance.text);
             })
-        })
+            .catch(err => {
+                res.status(404).send({
+                    message: "you screwed up"
+                })
+            })
     })
 
 module.exports = router;

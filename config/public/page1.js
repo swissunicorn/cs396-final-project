@@ -113,7 +113,6 @@ const searchButtonPress = () => {
             fetch('http://localhost:8081/restaurants?tags=' + requestString)
             .then(response => response.json())
             .then(res => {
-                console.log(res);
                 parseFetchResult(res, displayGrid);
             })
         } else {
@@ -200,17 +199,28 @@ function callDistanceAPI(origin, dest) {
 let result_array = [];
 
 function parseFetchResult(res, callback) {
-    for(let i = 0; i < res.length; i++) {
-    //     dest = makeDestinationString(res[i].location);
-    //     origin = address_str;
-    //     console.log(origin)
-    //     console.log(dest)
-    //     distance = callDistanceAPI(origin, dest);
-    //     res_distances.push(distance);
-        result_array.push([res[i].location, res[i].name, res[i].price, res[i].rating, res[i].tags])
+    if(res.length == 0) {
+        str = "";
+        if(restOrCafe) {
+            str = "restaurants";
+        } else {
+            str = "cafes";
+        }
+        document.getElementById('no results').innerHTML += `<p>There are no ${str} that contain all those tags. Try searching again.</p>`
     }
-    console.log(result_array);
-    callback();
+    else {
+        for(let i = 0; i < res.length; i++) {
+            //     dest = makeDestinationString(res[i].location);
+            //     origin = address_str;
+            //     console.log(origin)
+            //     console.log(dest)
+            //     distance = callDistanceAPI(origin, dest);
+            //     res_distances.push(distance);
+            result_array.push([res[i].location, res[i].name, res[i].price, res[i].rating, res[i].tags])
+        }
+        console.log(result_array);
+        callback();
+    }
 }
 
 function makeDestinationString(dest) {
@@ -227,7 +237,7 @@ function makeDestinationString(dest) {
 const reSearchPress = () => {
     result_array = []
     document.getElementById('page2').style.display = "block";
-    document.getElementById('active tags').innerHTML = "";
+    document.getElementById('tag buttons').innerHTML = "";
     document.getElementById('page3').style.display = "";
     document.getElementById('results').innerHTML = "";
 }
@@ -243,7 +253,7 @@ const displayGrid = () => {
 
 function makeJSON(rescaf) {
     res_string = `<section>`;
-    res_string += `<h2> ${rescaf[1]}} </h2>`;
+    res_string += `<h2> ${rescaf[1]} </h2>`;
     res_string += `<p> ${rescaf[0]} </p>`;
     res_string += `<p> ${rescaf[3]} </p>`;
     res_string += `<p> ${rescaf[2]} </p>`;

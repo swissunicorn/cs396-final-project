@@ -16,9 +16,12 @@
 
 #results > section {
    border: solid 1px #000;
-   display: flex;
-   flex-wrap: wrap;
-   flex: 0 0 33.33%;
+   display: grid;
+   grid-row-gap: 10px;
+   grid-column-gap: 20px;
+   grid-template-areas: 
+      "a" "b" "c" "d" "e";
+   height: 100%;
 }
 
 .heading-restaurant {

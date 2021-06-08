@@ -79,13 +79,6 @@ function hasWhiteSpace(str) {
     return str.indexOf(' ') >= 0;
 }
 
-var res_locations = [];
-var res_names = [];
-var res_prices = [];
-var res_ratings = [];
-var res_tags = [];
-var res_distances = [];
-
 const searchButtonPress = () => {
     if(tags.length == 0) {
         if(restOrCafe) {
@@ -120,6 +113,7 @@ const searchButtonPress = () => {
             fetch('http://localhost:8081/restaurants?tags=' + requestString)
             .then(response => response.json())
             .then(res => {
+                console.log(res);
                 parseFetchResult(res, displayGrid);
             })
         } else {
@@ -203,23 +197,19 @@ function callDistanceAPI(origin, dest) {
         })
 }
 
+let result_array = [];
+
 function parseFetchResult(res, callback) {
     for(let i = 0; i < res.length; i++) {
-        // this is not ideal. but since this is a data object idk how to deal with it
-        // it would be best if there were a list or something of these objects and I could access them
-        // it would make sorting easier at least
-        res_locations.push(res[i].location);
-        res_names.push(res[i].name);
-        res_prices.push(res[i].price);
-        res_ratings.push(res[i].rating);
-        res_tags.push(res[i].tags);
-        dest = makeDestinationString(res[i].location);
-        origin = address_str;
-        console.log(origin)
-        console.log(dest)
-        distance = callDistanceAPI(origin, dest);
-        res_distances.push(distance);
+    //     dest = makeDestinationString(res[i].location);
+    //     origin = address_str;
+    //     console.log(origin)
+    //     console.log(dest)
+    //     distance = callDistanceAPI(origin, dest);
+    //     res_distances.push(distance);
+        result_array.push([res[i].location, res[i].name, res[i].price, res[i].rating, res[i].tags])
     }
+    console.log(result_array);
     callback();
 }
 
@@ -235,12 +225,7 @@ function makeDestinationString(dest) {
 }
 
 const reSearchPress = () => {
-    res_locations = [];
-    res_names = [];
-    res_prices = [];
-    res_ratings = [];
-    res_tags = [];
-    tags = [];
+    result_array = []
     document.getElementById('page2').style.display = "block";
     document.getElementById('active tags').innerHTML = "";
     document.getElementById('page3').style.display = "";
@@ -248,20 +233,23 @@ const reSearchPress = () => {
 }
 
 const displayGrid = () => {
-    for(let i = 0; i < res_names.length; i++) {
-        document.getElementById('results').innerHTML += makeJSON(res_names[i], res_locations[i], res_tags[i], res_ratings[i], res_prices[i]);
+    for(let i = 0; i < result_array.length; i++) {
+        document.getElementById('results').innerHTML += makeJSON(result_array[i]);
     }
 }
 
-function makeJSON(name, loc, tags, rating, price) {
+// result_array.push([res[i].location, res[i].name, res[i].price, res[i].rating, res[i].tags])
+// [0]: location, [1]: name, [2]: price, [3]: rating, [4]: tags
+
+function makeJSON(rescaf) {
     res_string = `<section>`;
-    res_string += `<h2> ${name} </h2>`;
-    res_string += `<p> ${loc} </p>`;
-    res_string += `<p> ${rating} </p>`;
-    res_string += `<p> ${price} </p>`;
+    res_string += `<h2> ${rescaf[1]}} </h2>`;
+    res_string += `<p> ${rescaf[0]} </p>`;
+    res_string += `<p> ${rescaf[3]} </p>`;
+    res_string += `<p> ${rescaf[2]} </p>`;
     tag_string = "";
-    for(let i = 0; i < tags.length; i++) {
-        tag_string += tags[i] + ", ";
+    for(let i = 0; i < rescaf[4].length; i++) {
+        tag_string += rescaf[4][i] + ", ";
     }
     tag_string = tag_string.substring(0, tag_string.length - 2);
     res_string += `<p> tags: ${tag_string} </p>`;

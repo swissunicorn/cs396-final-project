@@ -47,15 +47,21 @@
  }
  .menu-content-restaurant {
     display: none;
+    flex-direction: column;
     position: absolute;
-    background-color: #017575;
+    background-color: white;
+    color: #7e32d4;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     min-width: 160px;
     z-index: 1;
  }
  .menu-content-cafe {
    display: none;
+   flex-direction: column;
    position: absolute;
-   background-color: #017575;
+   background-color: white;
+   color: #7e32d4;
+   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
    min-width: 160px;
    z-index: 1;
 }

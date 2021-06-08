@@ -131,14 +131,14 @@ const menuButtonPress = () => {
     if(restOrCafe) { // restaurant
         if(document.querySelector('.menu-content-restaurant').style.display === "") {
             // need to fix this
-            document.querySelector('.menu-content-restaurant').style.display = "block";
+            document.querySelector('.menu-content-restaurant').style.display = "flex";
         } else {
             document.querySelector('.menu-content-restaurant').style.display = "";
         }
     } else { // cafe    
         if(document.querySelector('.menu-content-cafe').style.display === "") {
             // need to fix this
-            document.querySelector('.menu-content-cafe').style.display = "block";
+            document.querySelector('.menu-content-cafe').style.display = "flex";
         } else {
             document.querySelector('.menu-content-cafe').style.display = "";
         }
@@ -162,6 +162,7 @@ function addTag(tag) {
         tags.push(tag)
         document.getElementById('tag buttons').innerHTML += `<button class="btn" id="${tag}" onclick="removeTag('${tag}')">${tag}</button>`
     }
+    menuButtonPress();
 }
 
 function removeTag(tag) {
@@ -236,6 +237,7 @@ function makeDestinationString(dest) {
 
 const reSearchPress = () => {
     result_array = []
+    tags = []
     document.getElementById('page2').style.display = "block";
     document.getElementById('tag buttons').innerHTML = "";
     document.getElementById('page3').style.display = "";

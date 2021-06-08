@@ -5,12 +5,18 @@
 let address; // make them just enter a street name bc we assume it's Evanston
 
 const goButtonPress = () => {
-    address = document.getElementById("location").value + ", Evanston, IL, 60201";
+    if(!document.getElementById("location").value) {
+        address = "";
+    }
+    else {
+        address = document.getElementById("location").value + ", Evanston, IL, 60201";
+        document.getElementById('choice').innerHTML += `<p> Address: "${address}" </p>`;
+    }
+    console.log(address);
     // I guess I'm just going to assume that the address is correct
     //doGeoCode(address);
     document.querySelector('header').innerHTML = `<h1>Suit your tastes!</h1>`;
     document.getElementById('page1-5').style.display = "block";
-    document.getElementById('choice').innerHTML += `<p> Address: "${address}" </p>`;
     document.getElementById('page1').style.display = "None";
 }
 
@@ -67,6 +73,16 @@ function hasWhiteSpace(str) {
     return str.indexOf(' ') >= 0;
 }
 
+function createCookie(name,value,days) {
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        var expires = "; expires="+date.toGMTString();
+    }
+    else var expires = "";
+    document.cookie = name + "=" + value + expires + "; path=/";
+}
+
 // TO-DO: make a cookie with the results of fetch and pass it to page 3
 const searchButtonPress = () => {
     if(tags.length == 0) {
@@ -74,13 +90,13 @@ const searchButtonPress = () => {
             fetch('http://localhost:8081/restaurants')
             .then(response => response.json())
             .then(res => {
-                console.log(res);
+                createCookie("res", JSON.stringify(JSON.parse(res)), 1);
             })
         } else {
             fetch('http://localhost:8081/cafes')
             .then(response => response.json())
             .then(res => {
-                console.log(res);
+                createCookie("res", JSON.stringify(JSON.parse(res)), 1);
             })
         }
     } else {
@@ -101,17 +117,25 @@ const searchButtonPress = () => {
             fetch('http://localhost:8081/restaurants?tags=' + requestString)
             .then(response => response.json())
             .then(res => {
-                console.log(res);
+                createCookie("res", JSON.stringify(res), 1);
             })
         } else {
             fetch('http://localhost:8081/cafes?tags=' + requestString)
             .then(response => response.json())
             .then(res => {
-                console.log(res);
+                createCookie("res", JSON.stringify(JSON.parse(res)), 1);
+                //console.log(document.cookie);
             })
         }
     }
-    //window.location.href = "page3.html"
+    add_st = `{"exists": "true"}`;
+    createCookie("exists", JSON.stringify(JSON.parse(add_st)), 1)
+    if(address != "") {
+        loc_string = `{"location": "${address}"}`;
+        createCookie("loc", JSON.stringify(JSON.parse(loc_string)), 1);
+        //document.cookie = 'loc=' + JSON.stringify(JSON.parse(loc_string));
+    }
+    window.location.href = "page3.html"
 }
 
 const menuButtonPress = () => {

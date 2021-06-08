@@ -84,6 +84,11 @@ router.route("/cafes")
         })
     });
 
+router.route("/key")
+    .get((req, res) => {
+        res.status(200).send(JSON.stringify({key: process.env.API_KEY}));
+    })
+
 router.route("/distance")
     .get((req, res) => {
         let origin = req.query.origin;

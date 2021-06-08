@@ -185,9 +185,29 @@ function removeTag(tag) {
 // page 3 functions //
 //////////////////////
 
+function callDistanceAPI(origin, dest) {
+    fetch('http://localhost:8081/key')
+        .then(response => response.json())
+        .then(key => {
+            console.log(key)
+            console.log(key.key)
+            let url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' + origin + '&destinations=' + dest + '&key=' + key.key + '&units=imperial';
+            fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                // idk man
+                console.log(data[0])
+                console.log(data[0][0])
+                return data;
+            })
+        })
+}
 
 function parseFetchResult(res, callback) {
     for(let i = 0; i < res.length; i++) {
+        // this is not ideal. but since this is a data object idk how to deal with it
+        // it would be best if there were a list or something of these objects and I could access them
+        // it would make sorting easier at least
         res_locations.push(res[i].location);
         res_names.push(res[i].name);
         res_prices.push(res[i].price);
@@ -197,11 +217,8 @@ function parseFetchResult(res, callback) {
         origin = address_str;
         console.log(origin)
         console.log(dest)
-        fetch(`http://localhost:8081/distance?origin=${origin}&destination=${dest}`)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-        })
+        distance = callDistanceAPI(origin, dest);
+        res_distances.push(distance);
     }
     callback();
 }

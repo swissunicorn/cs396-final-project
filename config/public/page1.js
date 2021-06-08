@@ -3,6 +3,7 @@
 //////////////////////
 
 let address; // make them just enter a street name bc we assume it's Evanston
+let address_str; 
 
 const goButtonPress = () => {
     if(!document.getElementById("location").value) {
@@ -10,16 +11,19 @@ const goButtonPress = () => {
     }
     else {
         address = document.getElementById("location").value + ", Evanston, IL, 60201";
+        split_strs = document.getElementById("location").value.split(" ");
+        for(let i = 0; i < split_strs.length; i++) {
+            address_str += split_strs[i] + "+";
+        }
+        address_str += "+Evanston+IL";
         document.getElementById('choice').innerHTML += `<p> Address: "${address}" </p>`;
     }
-    console.log(address);
     // I guess I'm just going to assume that the address is correct
     //doGeoCode(address);
     document.querySelector('header').innerHTML = `<h1>Suit your tastes!</h1>`;
     document.getElementById('page1-5').style.display = "block";
     document.getElementById('page1').style.display = "None";
 }
-
 
 function doGeoCode(address) {
     // Get geocoder instance
@@ -39,9 +43,11 @@ function doGeoCode(address) {
     });
   };
 
+
 ////////////////////////
 // page 1.5 functions //
 ////////////////////////
+
 let restOrCafe;
 
 function restChoice(bool) {
@@ -73,32 +79,12 @@ function hasWhiteSpace(str) {
     return str.indexOf(' ') >= 0;
 }
 
-function createCookie(name,value,days) {
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime()+(days*24*60*60*1000));
-        var expires = "; expires="+date.toGMTString();
-    }
-    else var expires = "";
-    document.cookie = name + "=" + value + expires + "; path=/";
-}
-
-let res_locations = [];
-let res_names = [];
-let res_prices = [];
-let res_ratings = [];
-let res_tags = [];
-
-// works
-function parseFetchResult(res) {
-    for(let i = 0; i < res.length; i++) {
-        res_locations.push(res[i].location);
-        res_names.push(res[i].name);
-        res_prices.push(res[i].price);
-        res_ratings.push(res[i].rating);
-        res_tags.push(res[i].tags);
-    }
-}
+var res_locations = [];
+var res_names = [];
+var res_prices = [];
+var res_ratings = [];
+var res_tags = [];
+var res_distances = [];
 
 const searchButtonPress = () => {
     if(tags.length == 0) {
@@ -107,13 +93,13 @@ const searchButtonPress = () => {
             .then(response => response.json())
             .then(res => {
                 //createCookie("res", JSON.stringify(JSON.parse(res)), 1);
-                parseFetchResult(res);
+                parseFetchResult(res, displayGrid);
             })
         } else {
             fetch('http://localhost:8081/cafes')
             .then(response => response.json())
             .then(res => {
-                parseFetchResult(res);
+                parseFetchResult(res, displayGrid);
             })
         }
     } else {
@@ -134,29 +120,18 @@ const searchButtonPress = () => {
             fetch('http://localhost:8081/restaurants?tags=' + requestString)
             .then(response => response.json())
             .then(res => {
-                console.log(res);
-                parseFetchResult(res);
+                parseFetchResult(res, displayGrid);
             })
         } else {
             fetch('http://localhost:8081/cafes?tags=' + requestString)
             .then(response => response.json())
             .then(res => {
-                parseFetchResult(res);
+                parseFetchResult(res, displayGrid);
             })
         }
     }
     document.getElementById('page2').style.display = "";
     document.getElementById('page3').style.display = "block";
-    displayGrid();
-
-    // add_st = `{"exists": "true"}`;
-    // createCookie("exists", JSON.stringify(JSON.parse(add_st)), 1)
-    // if(address != "") {
-    //     loc_string = `{"location": "${address}"}`;
-    //     createCookie("loc", JSON.stringify(JSON.parse(loc_string)), 1);
-    //     //document.cookie = 'loc=' + JSON.stringify(JSON.parse(loc_string));
-    // }
-    // window.location.href = "page3.html"
 }
 
 const menuButtonPress = () => {
@@ -210,13 +185,65 @@ function removeTag(tag) {
 // page 3 functions //
 //////////////////////
 
+function parseFetchResult(res, callback) {
+    for(let i = 0; i < res.length; i++) {
+        res_locations.push(res[i].location);
+        res_names.push(res[i].name);
+        res_prices.push(res[i].price);
+        res_ratings.push(res[i].rating);
+        res_tags.push(res[i].tags);
+        dest = makeDestinationString(res[i].location);
+        origin = address_str;
+        url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + origin + "&destinations=" + dest + "&key=" + process.env.API_KEY + "&units=imperial";
+        console.log(url);
+
+        //fetch('http://localhost:8081/restaurants?tags=' + requestString)
+
+    }
+    callback();
+}
+
+function makeDestinationString(dest) {
+    split_strs = dest.split(" ");
+    let res = "";
+    for(let i = 0; i < split_strs.length; i++) {
+        res += split_strs[i] + "+";
+    }
+    res += "+Evanston+IL";
+    return res;
+}
+
 const reSearchPress = () => {
     res_locations = [];
     res_names = [];
     res_prices = [];
     res_ratings = [];
     res_tags = [];
+    tags = [];
     document.getElementById('page2').style.display = "block";
+    document.getElementById('active tags').innerHTML = "";
     document.getElementById('page3').style.display = "";
     document.getElementById('results').innerHTML = "";
+}
+
+const displayGrid = () => {
+    for(let i = 0; i < res_names.length; i++) {
+        document.getElementById('results').innerHTML += makeJSON(res_names[i], res_locations[i], res_tags[i], res_ratings[i], res_prices[i]);
+    }
+}
+
+function makeJSON(name, loc, tags, rating, price) {
+    res_string = `<section>`;
+    res_string += `<h2> ${name} </h2>`;
+    res_string += `<p> ${loc} </p>`;
+    res_string += `<p> ${rating} </p>`;
+    res_string += `<p> ${price} </p>`;
+    tag_string = "";
+    for(let i = 0; i < tags.length; i++) {
+        tag_string += tags[i] + ", ";
+    }
+    tag_string = tag_string.substring(0, tag_string.length - 2);
+    res_string += `<p> tags: ${tag_string} </p>`;
+    res_string += `</section>`;
+    return res_string;
 }

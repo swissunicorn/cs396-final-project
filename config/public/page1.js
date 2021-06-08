@@ -83,20 +83,37 @@ function createCookie(name,value,days) {
     document.cookie = name + "=" + value + expires + "; path=/";
 }
 
-// TO-DO: make a cookie with the results of fetch and pass it to page 3
+let res_locations = [];
+let res_names = [];
+let res_prices = [];
+let res_ratings = [];
+let res_tags = [];
+
+// works
+function parseFetchResult(res) {
+    for(let i = 0; i < res.length; i++) {
+        res_locations.push(res[i].location);
+        res_names.push(res[i].name);
+        res_prices.push(res[i].price);
+        res_ratings.push(res[i].rating);
+        res_tags.push(res[i].tags);
+    }
+}
+
 const searchButtonPress = () => {
     if(tags.length == 0) {
         if(restOrCafe) {
             fetch('http://localhost:8081/restaurants')
             .then(response => response.json())
             .then(res => {
-                createCookie("res", JSON.stringify(JSON.parse(res)), 1);
+                //createCookie("res", JSON.stringify(JSON.parse(res)), 1);
+                parseFetchResult(res);
             })
         } else {
             fetch('http://localhost:8081/cafes')
             .then(response => response.json())
             .then(res => {
-                createCookie("res", JSON.stringify(JSON.parse(res)), 1);
+                parseFetchResult(res);
             })
         }
     } else {
@@ -117,25 +134,29 @@ const searchButtonPress = () => {
             fetch('http://localhost:8081/restaurants?tags=' + requestString)
             .then(response => response.json())
             .then(res => {
-                createCookie("res", JSON.stringify(res), 1);
+                console.log(res);
+                parseFetchResult(res);
             })
         } else {
             fetch('http://localhost:8081/cafes?tags=' + requestString)
             .then(response => response.json())
             .then(res => {
-                createCookie("res", JSON.stringify(JSON.parse(res)), 1);
-                //console.log(document.cookie);
+                parseFetchResult(res);
             })
         }
     }
-    add_st = `{"exists": "true"}`;
-    createCookie("exists", JSON.stringify(JSON.parse(add_st)), 1)
-    if(address != "") {
-        loc_string = `{"location": "${address}"}`;
-        createCookie("loc", JSON.stringify(JSON.parse(loc_string)), 1);
-        //document.cookie = 'loc=' + JSON.stringify(JSON.parse(loc_string));
-    }
-    window.location.href = "page3.html"
+    document.getElementById('page2').style.display = "";
+    document.getElementById('page3').style.display = "block";
+    displayGrid();
+
+    // add_st = `{"exists": "true"}`;
+    // createCookie("exists", JSON.stringify(JSON.parse(add_st)), 1)
+    // if(address != "") {
+    //     loc_string = `{"location": "${address}"}`;
+    //     createCookie("loc", JSON.stringify(JSON.parse(loc_string)), 1);
+    //     //document.cookie = 'loc=' + JSON.stringify(JSON.parse(loc_string));
+    // }
+    // window.location.href = "page3.html"
 }
 
 const menuButtonPress = () => {
@@ -183,4 +204,19 @@ function removeTag(tag) {
     const elem = document.getElementById(tag);
     elem.parentNode.removeChild(elem);
 
+}
+
+//////////////////////
+// page 3 functions //
+//////////////////////
+
+const reSearchPress = () => {
+    res_locations = [];
+    res_names = [];
+    res_prices = [];
+    res_ratings = [];
+    res_tags = [];
+    document.getElementById('page2').style.display = "block";
+    document.getElementById('page3').style.display = "";
+    document.getElementById('results').innerHTML = "";
 }

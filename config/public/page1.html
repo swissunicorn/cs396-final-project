@@ -42,10 +42,32 @@
                         <h2>Searching for cafes:</h2>
                     </div>
                     <p>Click on the dropdown to open/close tag selection.</p>
+                    <button class="btn" id="goBackButton" onclick="goBackChoice()">back button</button>
+                </br>
                     <div class="dropdown-menu">
                         <button class="menu-btn" onclick="menuButtonPress()">Tags</button>
                         <div class="menu-content-restaurant">
-                            <a class="alcohol" onclick="addTag('alcohol')">Alcoholic Drinks</a>
+                            <a class="tag-choice" onclick="addTag('alcohol')">Alcoholic Drinks</a>
+                            <a class="tag-choice" onclick="addTag('american')">American</a>
+                            <a class="tag-choice" onclick="addTag('asian')">Asian</a>
+                            <a class="tag-choice" onclick="addTag('breakfast')">Breakfast</a>
+                            <a class="tag-choice" onclick="addTag('bubble tea')">Bubble Tea</a>
+                            <a class="tag-choice" onclick="addTag('chinese')">Chinese</a>
+                            <a class="tag-choice" onclick="addTag('dessert')">Desserts</a>
+                            <a class="tag-choice" onclick="addTag('fried food')">Fried Food</a>
+                            <a class="tag-choice" onclick="addTag('good drinks')">Good Drinks</a>
+                            <a class="tag-choice" onclick="addTag('indian')">Indian</a>
+                            <a class="tag-choice" onclick="addTag('italian')">Italian</a>
+                            <a class="tag-choice" onclick="addTag('japanese')">Japanese</a>
+                            <a class="tag-choice" onclick="addTag('korean')">Korean</a>
+                            <a class="tag-choice" onclick="addTag('outdoor seating')">Outdoor Seating</a>
+                            <a class="tag-choice" onclick="addTag('sandwiches')">Sandwiches</a>
+                            <a class="tag-choice" onclick="addTag('spanish/mexican')">Spanish or Mexican</a>
+                            <a class="tag-choice" onclick="addTag('thai')">Thai</a>
+                            <a class="tag-choice" onclick="addTag('vegetarian')">Vegetarian Options</a>
+                            <a class="tag-choice" onclick="addTag('vietnamese')">Vietnamese</a>
+                            <a class="tag-choice" onclick="addTag('wildcard discount')">Wildcard Discount</a>
+                            <!-- <a class="alcohol" onclick="addTag('alcohol')">Alcoholic Drinks</a>
                             <a class="american" onclick="addTag('american')">American</a>
                             <a class="asian" onclick="addTag('asian')">Asian</a>
                             <a class="breakfast" onclick="addTag('breakfast')">Breakfast</a>
@@ -64,7 +86,7 @@
                             <a class="thai" onclick="addTag('thai')">Thai</a>
                             <a class="vegetarian" onclick="addTag('vegetarian')">Vegetarian Options</a>
                             <a class="vietnamese" onclick="addTag('vietnamese')">Vietnamese</a>
-                            <a class="wildcard discount" onclick="addTag('wildcard discount')">Wildcard Discount</a>
+                            <a class="wildcard discount" onclick="addTag('wildcard discount')">Wildcard Discount</a> -->
                         </div>
                         <div class="menu-content-cafe">
                             <a class="alcohol" onclick="addTag('alcohol')">Alcoholic Drinks</a>
@@ -81,7 +103,6 @@
                             <a class="study spot" onclick="addTag('study spot')">Study Spot</a>
                             <a class="wildcard discount" onclick="addTag('wildcard discount')">Wildcard Discount</a>
                         </div>
-                        <button class="btn" id="goBackButton" onclick="goBackChoice()">back button</button>
                     </div>
                 </section>
                 <section id="active tags">

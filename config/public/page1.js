@@ -160,7 +160,8 @@ const goBackChoice = () => {
 function addTag(tag) {
     if(!tags.includes(tag)) {
         tags.push(tag)
-        document.getElementById('tag buttons').innerHTML += `<button class="btn" id="${tag}" onclick="removeTag('${tag}')">${tag}</button>`
+        // just changed this
+        document.getElementById('tag buttons').innerHTML += `<button class="active-tag" id="${tag}" onclick="removeTag('${tag}')">${tag}</button>`
     }
     menuButtonPress();
 }

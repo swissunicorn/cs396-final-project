@@ -2,54 +2,36 @@
 // page 1 functions //
 //////////////////////
 
-// const { Loader } = require("@googlemaps/js-api-loader");
-
 let address; // make them just enter a street name bc we assume it's Evanston
 
-const goButtonPress = () => { // probably need to make this into a function with input
-    // check if the address is valid
-    // save the address
-    // if there is no address, or the address is invalid, you just can't sort anything. Make that work
-    // and you won't be able to calculate distance or display it
-
+const goButtonPress = () => {
+    address = document.getElementById("location").value + ", Evanston, IL, 60201";
+    // I guess I'm just going to assume that the address is correct
+    //doGeoCode(address);
     document.querySelector('header').innerHTML = `<h1>Suit your tastes!</h1>`;
     document.getElementById('page1-5').style.display = "block";
+    document.getElementById('choice').innerHTML += `<p> Address: "${address}" </p>`;
     document.getElementById('page1').style.display = "None";
 }
 
-// function load() {
-//     const loader = new Loader({
-//         apiKey: "AIzaSyDyfToz8SRY_tAFBaqKnnaRs-4xm1qnWNM", version: "weekly"
-//     });
-//     loader.load().then(() => {
-//         var geoCoder = new window.google.maps.Geocoder();
-//         console.log(geocoder);
-//     });
-// }
 
-// load();
-
-// copied from the internet uhhh I don't think this works
-function doGeoCode() {
-    //var addr = document.getElementById("address");
+function doGeoCode(address) {
     // Get geocoder instance
     var geocoder = new window.google.maps.Geocoder();
     console.log(geocoder)
     // Geocode the address
-    // geocoder.geocode({
-    //   'address': addr.value
-    // }, function(results, status) {
-    //   if (status === google.maps.GeocoderStatus.OK && results.length > 0) {
+    geocoder.geocode({
+      'address': address
+    }, function(results, status) {
+      if (status === google.maps.GeocoderStatus.OK && results.length > 0) {
   
-    //     // set it to the correct, formatted address if it's valid
-    //     addr.value = results[0].formatted_address;;
+        // set it to the correct, formatted address if it's valid
+        address = results[0].formatted_address;;
   
-    //     // show an error if it's not
-    //   } else alert("Invalid address");
-    // });
+        // show an error if it's not
+      } else alert("Invalid address");
+    });
   };
-
-  doGeoCode();
 
 ////////////////////////
 // page 1.5 functions //

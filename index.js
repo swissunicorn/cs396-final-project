@@ -19,6 +19,20 @@ app.use(middleware.cors);
 const config = require("./config/config")[env || "development"];
 const mongoose = require("mongoose");
 
+const { Loader } = require("@googlemaps/js-api-loader");
+
+function load() {
+    const loader = new Loader({
+        apiKey: "AIzaSyDyfToz8SRY_tAFBaqKnnaRs-4xm1qnWNM", version: "weekly"
+    });
+    loader.load().then(() => {
+        var geoCoder = new window.google.maps.Geocoder();
+        console.log(geocoder);
+    });
+}
+
+load();
+
 console.log("Trying to connect to database...");
 mongoose.connect(config.database, config.mongoConfig, err => {
     if (err) {

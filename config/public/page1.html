@@ -15,7 +15,7 @@
                     <form>
                         <!-- Name -->
                         <label for="location">Please enter your location (address).</label>
-                        <input type="text" id="location">
+                        <input type="text" id="location" onchange="doGeoCode()"/>
                     </form>
                 </section>
                 <p>If you do not enter a location, you will not be able to sort results by distance.</p>
@@ -94,5 +94,9 @@
             </div>
         </main>
         <script src="page1.js" type="text/javascript"></script>
+        <!-- require Google Maps API -->
+        <!-- <script async
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyfToz8SRY_tAFBaqKnnaRs-4xm1qnWNM&callback=initMap">
+        </script> -->
     </body>
 </html>

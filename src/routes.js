@@ -1,6 +1,7 @@
 "use strict";
 
 const resetDB = require("../config/scripts/populateDB")
+const fetch = require("node-fetch");
 
 // I'm making doctor restaurant and companion cafe
 const Cafe = require("./schema/Cafe");
@@ -82,5 +83,25 @@ router.route("/cafes")
             message: "we are not posting to cafes"
         })
     });
+
+router.route("/distance")
+    .get((req, res) => {
+        let origin = req.query.origin;
+        let dest = req.query.destination;
+        let url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + origin + "&destinations=" + dest + `&key=${process.env.API_KEY}` + "&units=imperial";
+        fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log(rows)
+            console.log(rows[0])
+            console.log(rows[0][0].text)
+            res.status(200).send(data);
+        })
+        .catch(err => {
+            res.status(404).send({
+                message: "you screwed up"
+            })
+        })
+    })
 
 module.exports = router;

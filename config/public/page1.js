@@ -3,7 +3,7 @@
 //////////////////////
 
 let address; // make them just enter a street name bc we assume it's Evanston
-let address_str; 
+let address_str = ""; 
 
 const goButtonPress = () => {
     if(!document.getElementById("location").value) {
@@ -15,7 +15,7 @@ const goButtonPress = () => {
         for(let i = 0; i < split_strs.length; i++) {
             address_str += split_strs[i] + "+";
         }
-        address_str += "+Evanston+IL";
+        address_str += "Evanston+IL";
         document.getElementById('choice').innerHTML += `<p> Address: "${address}" </p>`;
     }
     // I guess I'm just going to assume that the address is correct
@@ -185,6 +185,7 @@ function removeTag(tag) {
 // page 3 functions //
 //////////////////////
 
+
 function parseFetchResult(res, callback) {
     for(let i = 0; i < res.length; i++) {
         res_locations.push(res[i].location);
@@ -194,22 +195,25 @@ function parseFetchResult(res, callback) {
         res_tags.push(res[i].tags);
         dest = makeDestinationString(res[i].location);
         origin = address_str;
-        url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + origin + "&destinations=" + dest + "&key=" + process.env.API_KEY + "&units=imperial";
-        console.log(url);
-
-        //fetch('http://localhost:8081/restaurants?tags=' + requestString)
-
+        console.log(origin)
+        console.log(dest)
+        fetch(`http://localhost:8081/distance?origin=${origin}&destination=${dest}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
     }
     callback();
 }
 
 function makeDestinationString(dest) {
-    split_strs = dest.split(" ");
+    split_strs_a = dest.split(", ")
+    split_strs = split_strs_a[0].split(" ");
     let res = "";
     for(let i = 0; i < split_strs.length; i++) {
         res += split_strs[i] + "+";
     }
-    res += "+Evanston+IL";
+    res += "Evanston+IL";
     return res;
 }
 
@@ -247,3 +251,7 @@ function makeJSON(name, loc, tags, rating, price) {
     res_string += `</section>`;
     return res_string;
 }
+
+// TODO: make pretty CSS
+// fetch pictures from google places API
+// implement sorting

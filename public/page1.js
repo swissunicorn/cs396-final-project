@@ -4,6 +4,8 @@
 
 let address; // make them just enter a street name bc we assume it's Evanston
 let address_str = ""; 
+//let BASE_URL = 'http://localhost:8081';
+let BASE_URL = 'https://srs-restaurants-cafes.herokuapp.com';
 
 const goButtonPress = () => {
     if(!document.getElementById("location").value) {
@@ -25,24 +27,6 @@ const goButtonPress = () => {
     document.getElementById('page1-5').style.display = "block";
     document.getElementById('page1').style.display = "None";
 }
-
-// function doGeoCode(address) {
-//     // Get geocoder instance
-//     var geocoder = new window.google.maps.Geocoder();
-//     console.log(geocoder)
-//     // Geocode the address
-//     geocoder.geocode({
-//       'address': address
-//     }, function(results, status) {
-//       if (status === google.maps.GeocoderStatus.OK && results.length > 0) {
-  
-//         // set it to the correct, formatted address if it's valid
-//         address = results[0].formatted_address;;
-  
-//         // show an error if it's not
-//       } else alert("Invalid address");
-//     });
-//   };
 
 
 ////////////////////////
@@ -84,14 +68,14 @@ function hasWhiteSpace(str) {
 const searchButtonPress = () => {
     if(tags.length == 0) {
         if(restOrCafe) {
-            fetch('http://localhost:8081/restaurants')
+            fetch(`${BASE_URL}/restaurants`)
             .then(response => response.json())
             .then(res => {
                 //createCookie("res", JSON.stringify(JSON.parse(res)), 1);
                 parseFetchResult(res);
             })
         } else {
-            fetch('http://localhost:8081/cafes')
+            fetch(`${BASE_URL}/cafes`)
             .then(response => response.json())
             .then(res => {
                 parseFetchResult(res);
@@ -112,13 +96,13 @@ const searchButtonPress = () => {
             }
         }
         if(restOrCafe) {
-            fetch('http://localhost:8081/restaurants?tags=' + requestString)
+            fetch(`${BASE_URL}/restaurants?tags=` + requestString)
             .then(response => response.json())
             .then(res => {
                 parseFetchResult(res);
             })
         } else {
-            fetch('http://localhost:8081/cafes?tags=' + requestString)
+            fetch(`${BASE_URL}/cafes?tags=` + requestString)
             .then(response => response.json())
             .then(res => {
                 parseFetchResult(res);
@@ -189,7 +173,7 @@ function removeTag(tag) {
 //////////////////////
 
 async function callDistanceAPI(origin, dest, restobj, callback) {
-    fetch(`http://localhost:8081/distance?origin=${origin}&destination=${dest}`)
+    fetch(`${BASE_URL}/distance?origin=${origin}&destination=${dest}`)
         .then(response => response.json())
         .then(data => {
             //return data.msg;

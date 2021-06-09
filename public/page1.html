@@ -29,6 +29,9 @@
                     <button class="btn" onclick="restChoice(`${false}`)">Cafes</button>
                     <button class="btn" onclick="goBackAddress()">Wait, I want to change my address!</button>
                 </section>
+                <div id="address-input">
+
+                </div>
             </div>
             
             <!-- former page 2 stuff, starts hidden-->
@@ -67,26 +70,6 @@
                             <a class="tag-choice" onclick="addTag('vegetarian')">Vegetarian Options</a>
                             <a class="tag-choice" onclick="addTag('vietnamese')">Vietnamese</a>
                             <a class="tag-choice" onclick="addTag('wildcard discount')">Wildcard Discount</a>
-                            <!-- <a class="alcohol" onclick="addTag('alcohol')">Alcoholic Drinks</a>
-                            <a class="american" onclick="addTag('american')">American</a>
-                            <a class="asian" onclick="addTag('asian')">Asian</a>
-                            <a class="breakfast" onclick="addTag('breakfast')">Breakfast</a>
-                            <a class="bubble tea" onclick="addTag('bubble tea')">Bubble Tea</a>
-                            <a class="chinese" onclick="addTag('chinese')">Chinese</a>
-                            <a class="dessert" onclick="addTag('dessert')">Desserts</a>
-                            <a class="fried food" onclick="addTag('fried food')">Fried Food</a>
-                            <a class="good drinks" onclick="addTag('good drinks')">Good Drinks</a>
-                            <a class="indian" onclick="addTag('indian')">Indian</a>
-                            <a class="italian" onclick="addTag('italian')">Italian</a>
-                            <a class="japanese" onclick="addTag('japanese')">Japanese</a>
-                            <a class="korean" onclick="addTag('korean')">Korean</a>
-                            <a class="outdoor seating" onclick="addTag('outdoor seating')">Outdoor Seating</a>
-                            <a class="sandwiches" onclick="addTag('sandwiches')">Sandwiches</a>
-                            <a class="spanish/mexican" onclick="addTag('spanish/mexican')">Spanish or Mexican</a>
-                            <a class="thai" onclick="addTag('thai')">Thai</a>
-                            <a class="vegetarian" onclick="addTag('vegetarian')">Vegetarian Options</a>
-                            <a class="vietnamese" onclick="addTag('vietnamese')">Vietnamese</a>
-                            <a class="wildcard discount" onclick="addTag('wildcard discount')">Wildcard Discount</a> -->
                         </div>
                         <div class="menu-content-cafe">
                             <a class="tag-choice" onclick="addTag('alcohol')">Alcoholic Drinks</a>
@@ -102,19 +85,6 @@
                             <a class="tag-choice" onclick="addTag('snacks')">Snacks</a>
                             <a class="tag-choice" onclick="addTag('study spot')">Study Spot</a>
                             <a class="tag-choice" onclick="addTag('wildcard discount')">Wildcard Discount</a>
-                            <!-- <a class="alcohol" onclick="addTag('alcohol')">Alcoholic Drinks</a>
-                            <a class="asian snacks" onclick="addTag('asian snacks')">Asian Snacks</a>
-                            <a class="breakfast" onclick="addTag('breakfast')">Breakfast</a>
-                            <a class="bubble tea" onclick="addTag('bubble tea')">Bubble Tea</a>
-                            <a class="coffee" onclick="addTag('coffee')">Coffee</a>
-                            <a class="food" onclick="addTag('food')">Food</a>
-                            <a class="iced tea" onclick="addTag('iced tea')">Iced Tea</a>
-                            <a class="local" onclick="addTag('local')">Local</a>
-                            <a class="outdoor seating" onclick="addTag('outdoor seating')">Outdoor Seating</a>
-                            <a class="sandwiches" onclick="addTag('sandwiches')">Sandwiches</a>
-                            <a class="snacks" onclick="addTag('snacks')">Snacks</a>
-                            <a class="study spot" onclick="addTag('study spot')">Study Spot</a>
-                            <a class="wildcard discount" onclick="addTag('wildcard discount')">Wildcard Discount</a> -->
                         </div>
                     </div>
                 </section>
@@ -132,9 +102,28 @@
                 </header>
                 <main>
                     <div id="no results">
-
+                        
                     </div>
                     <button class="btn" id="backToSearch" onclick="reSearchPress()">Make another query</button>
+                    <div id="gave-address">
+                        <div class="dropdown-menu">
+                            <button class="menu-btn" onclick="sortMenuPress1()">Sort</button>
+                            <div class="sort-options1">
+                                <a class="sort-choice" id="price-sort" onclick="sortByPrice(sortMenuPress1)">Price (low to high)</a>
+                                <a class="sort-choice" id="rating-sort" onclick="sortByRating(sortMenuPress1)">Rating (high to low)</a>
+                                <a class="sort-choice" id="distance-sort" onclick="sortByDistance(sortMenuPress1)">Distance (low to high)</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="no-address">
+                        <div class="dropdown-menu">
+                            <button class="menu-btn" onclick="sortMenuPress2()">Sort</button>
+                            <div class="sort-options2">
+                                <a class="sort-choice" id="price-sort" onclick="sortByPrice(sortMenuPress2)">Price (low to high)</a>
+                                <a class="sort-choice" id="rating-sort" onclick="sortByRating(sortMenuPress2)">Rating (high to low)</a>
+                            </div>
+                        </div>
+                    </div>
                     <!-- results go here, wrapped by <section> -->
                         <div id="results">
 

@@ -8,6 +8,7 @@ let address_str = "";
 const goButtonPress = () => {
     if(!document.getElementById("location").value) {
         address = "";
+        document.getElementById('address-input').innerHTML = "";
     }
     else {
         address = document.getElementById("location").value + ", Evanston, IL, 60201";
@@ -16,7 +17,7 @@ const goButtonPress = () => {
             address_str += split_strs[i] + "+";
         }
         address_str += "Evanston+IL";
-        document.getElementById('choice').innerHTML += `<p> Address: "${address}" </p>`;
+        document.getElementById('address-input').innerHTML = `<p> Address: "${address}" </p>`;
     }
     // I guess I'm just going to assume that the address is correct
     //doGeoCode(address);
@@ -67,6 +68,7 @@ const goBackAddress = () => {
     document.querySelector('header').innerHTML = `<h1>Evanston Food Finder: What should you eat or drink in Evanston?</h1>`;
     document.getElementById('page1-5').style.display = "None";
     document.getElementById('page1').style.display = "block";
+    address = "";
 }
 
 //////////////////////
@@ -125,6 +127,14 @@ const searchButtonPress = () => {
     }
     document.getElementById('page2').style.display = "";
     document.getElementById('page3').style.display = "block";
+    if(address == "") { // sort buttons
+        document.getElementById('no-address').style.display = "block";
+        //document.getElementById('gave-address').style.display = "";
+    }
+    else {
+        document.getElementById('gave-address').style.display = "block";
+        //document.getElementById('no-address').style.display = "";
+    }
 }
 
 const menuButtonPress = () => {
@@ -205,14 +215,19 @@ function parseFetchResult(res) {
         }
         document.getElementById('no results').innerHTML += `<p>There are no ${str} that contain all those tags. Try searching again.</p>`
     }
+    else if(address == "") {
+        // no distance calculation
+        for(let i = 0; i < res.length; i++) {
+            result_array.push([res[i].location, res[i].name, res[i].price, res[i].rating, res[i].tags]);
+            displayGrid();
+        }
+    }
     else {
         for(let i = 0; i < res.length; i++) {
             dest = makeDestinationString(res[i].location);
             origin = address_str;
             callDistanceAPI(origin, dest, res[i], res_push)
         }
-        // MAKE THE PUSH INTO A CALLBACK
-        // IT IS EXECUTING ASYNCHRONOUSLY
     }
 }
 
@@ -229,16 +244,28 @@ function makeDestinationString(dest) {
 
 const reSearchPress = () => {
     result_array = []
+    index = 0;
     tags = []
     document.getElementById('page2').style.display = "block";
     document.getElementById('tag buttons').innerHTML = "";
     document.getElementById('page3').style.display = "";
     document.getElementById('results').innerHTML = "";
+    document.getElementById('gave-address').style.display = "";
+    document.getElementById('no-address').style.display = "";
+    document.querySelector('.sort-options1').style.display = "";
+    document.querySelector('.sort-options2').style.display = "";
 }
 
 const displayGrid = () => {
     document.getElementById('results').innerHTML += makeJSON(result_array[index]);
     index++;
+}
+
+const reDisplayGrid = () => {
+    document.getElementById('results').innerHTML = "";
+    for(let i = 0; i < result_array.length; i++) {
+        document.getElementById('results').innerHTML += makeJSON(result_array[i]);
+    }
 }
 
 // result_array.push([res[i].location, res[i].name, res[i].price, res[i].rating, res[i].tags])
@@ -248,9 +275,11 @@ function makeJSON(rescaf) {
     res_string = `<section>`;
     res_string += `<h2> ${rescaf[1]} </h2>`;
     res_string += `<p> ${rescaf[0]} </p>`;
-    res_string += `<p> ${rescaf[3]} </p>`;
+    res_string += `<p> ${rescaf[3]} ☆</p>`;
     res_string += `<p> ${rescaf[2]} </p>`;
-    res_string += `<p> ${rescaf[5]} </p>`;
+    if(address != "") {
+        res_string += `<p> ${rescaf[5]} </p>`;
+    }
     // distance
     tag_string = "";
     for(let i = 0; i < rescaf[4].length; i++) {
@@ -262,6 +291,50 @@ function makeJSON(rescaf) {
     return res_string;
 }
 
-// TODO: make pretty CSS
+function sortByDistance(callback) {
+    result_array.sort((a, b) => parseFloat(a[5].substring(0, 3)) - parseFloat(b[5].substring(0, 3)));
+    console.log(result_array);
+    // can I make it opaque or unclickable?
+    callback();
+    reDisplayGrid();
+}
+
+function sortByRating(callback) {
+    result_array.sort((a, b) => parseFloat(b[3]) - parseFloat(a[3]));
+    console.log(result_array);
+    callback();
+    reDisplayGrid();
+}
+
+// works
+function sortByPrice(callback) {
+    result_array.sort((a, b) => a[2].length - b[2].length);
+    console.log(result_array);
+    callback();
+    reDisplayGrid();
+}
+
+// I have an issue where 
+const sortMenuPress1 = () => {
+    if(document.querySelector('.sort-options1').style.display === "") {
+        document.querySelector('.sort-options1').style.display = "flex";
+    } else {
+        document.querySelector('.sort-options1').style.display = "";
+    }
+}
+
+const sortMenuPress2 = () => {
+    if(document.querySelector('.sort-options2').style.display === "") {
+        document.querySelector('.sort-options2').style.display = "flex";
+    } else {
+        document.querySelector('.sort-options2').style.display = "";
+    }
+}
+
+// make new sorting drop-down that has the current sort grayed-out
+// obviously if they have no address, then there is no distance option
+
+// TODO: make pretty CSS (a little more?)
 // fetch pictures from google places API
-// implement sorting
+// add stars
+// maybe make tags purple?

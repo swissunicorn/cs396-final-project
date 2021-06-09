@@ -86,13 +86,13 @@ const searchButtonPress = () => {
             .then(response => response.json())
             .then(res => {
                 //createCookie("res", JSON.stringify(JSON.parse(res)), 1);
-                parseFetchResult(res, displayGrid);
+                parseFetchResult(res);
             })
         } else {
             fetch('http://localhost:8081/cafes')
             .then(response => response.json())
             .then(res => {
-                parseFetchResult(res, displayGrid);
+                parseFetchResult(res);
             })
         }
     } else {
@@ -113,13 +113,13 @@ const searchButtonPress = () => {
             fetch('http://localhost:8081/restaurants?tags=' + requestString)
             .then(response => response.json())
             .then(res => {
-                parseFetchResult(res, displayGrid);
+                parseFetchResult(res);
             })
         } else {
             fetch('http://localhost:8081/cafes?tags=' + requestString)
             .then(response => response.json())
             .then(res => {
-                parseFetchResult(res, displayGrid);
+                parseFetchResult(res);
             })
         }
     }
@@ -178,32 +178,24 @@ function removeTag(tag) {
 // page 3 functions //
 //////////////////////
 
-function callDistanceAPI(origin, dest) {
+async function callDistanceAPI(origin, dest, restobj, callback) {
     fetch(`http://localhost:8081/distance?origin=${origin}&destination=${dest}`)
         .then(response => response.json())
-        .then(distance => {
-            return distance;
+        .then(data => {
+            //return data.msg;
+            callback(restobj, data.msg, displayGrid)
         })
-
-
-    // fetch('http://localhost:8081/key')
-    //     .then(response => response.json())
-    //     .then(key => {
-    //         let url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' + origin + '&destinations=' + dest + '&key=' + key.key + '&units=imperial';
-    //         fetch(url)
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             // idk man
-    //             console.log(data[0])
-    //             console.log(data[0][0])
-    //             return data;
-    //         })
-    //     })
 }
 
 let result_array = [];
+let index = 0;
 
-function parseFetchResult(res, callback) {
+function res_push(res_obj, distance, callback) {
+    result_array.push([res_obj.location, res_obj.name, res_obj.price, res_obj.rating, res_obj.tags, distance])
+    callback();
+}
+
+function parseFetchResult(res) {
     if(res.length == 0) {
         str = "";
         if(restOrCafe) {
@@ -217,14 +209,10 @@ function parseFetchResult(res, callback) {
         for(let i = 0; i < res.length; i++) {
             dest = makeDestinationString(res[i].location);
             origin = address_str;
-            console.log(dest)
-            console.log(origin)
-            distance = callDistanceAPI(origin, dest);
-            // then add the distance in the array I'm pushing to
-            result_array.push([res[i].location, res[i].name, res[i].price, res[i].rating, res[i].tags], distance)
+            callDistanceAPI(origin, dest, res[i], res_push)
         }
-        console.log(result_array);
-        callback();
+        // MAKE THE PUSH INTO A CALLBACK
+        // IT IS EXECUTING ASYNCHRONOUSLY
     }
 }
 
@@ -249,9 +237,8 @@ const reSearchPress = () => {
 }
 
 const displayGrid = () => {
-    for(let i = 0; i < result_array.length; i++) {
-        document.getElementById('results').innerHTML += makeJSON(result_array[i]);
-    }
+    document.getElementById('results').innerHTML += makeJSON(result_array[index]);
+    index++;
 }
 
 // result_array.push([res[i].location, res[i].name, res[i].price, res[i].rating, res[i].tags])
@@ -263,6 +250,7 @@ function makeJSON(rescaf) {
     res_string += `<p> ${rescaf[0]} </p>`;
     res_string += `<p> ${rescaf[3]} </p>`;
     res_string += `<p> ${rescaf[2]} </p>`;
+    res_string += `<p> ${rescaf[5]} </p>`;
     // distance
     tag_string = "";
     for(let i = 0; i < rescaf[4].length; i++) {
